@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Venues | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/venues.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="venues-screen">
+
+    <aside class="sidebar">
+
+        <a class="logo" href="dashboard.html">
+            Campus<span>Venue</span>
+        </a>
+
+        <div class="nav-label">
+            Student workspace
+        </div>
+
+        <a class="nav-link" href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a class="nav-link" href="event.html">
+            Explore events
+        </a>
+
+        <a class="nav-link active" href="venues.html">
+            Find venues
+        </a>
+
+        <a class="nav-link" href="my-events.html">
+            My events
+        </a>
+
+        <a class="nav-link" href="notifications.html">
+            Notifications
+        </a>
+
+        <a class="nav-link" href="profile.html">
+            Profile
+        </a>
+
+        <a class="nav-link" href="../index.html">
+            Home
+        </a>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <button
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Open menu">
+                &#9776;
+            </button>
+
+            <h1>Find venues</h1>
+
+            <span class="user">
+                Student workspace
+            </span>
+
+        </header>
+
+        <section class="content">
+
+            <span class="eyebrow">
+                Campus spaces
+            </span>
+
+            <p class="muted">
+                Explore spaces used by your college community.
+            </p>
+
+            <div
+                id="venueLoading"
+                class="card">
+                Loading venues...
+            </div>
+
+            <div
+                id="venueError"
+                class="card"
+                style="display:none; color:#b91c1c;">
+            </div>
+
+            <div
+                class="venues-grid"
+                id="venueGrid">
+            </div>
+
+            <div
+                id="noVenues"
+                class="card"
+                style="display:none;">
+                No venues are available right now.
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/student-venues.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            protectPage("student");
+        });
+    </script>
+
+</body>
+</html>

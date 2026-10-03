@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | CampusVenue</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+
+    <style>
+
+
+
+
+        .role-selector {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .role-option {
+
+            display: block;
+
+            cursor: pointer;
+
+            margin: 0;
+
+        }
+
+
+        
+        .role-option input[type="radio"] {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        .role-card {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 14px 12px;
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            cursor: pointer;
+
+            transition:
+                all 0.2s ease;
+
+            user-select: none;
+
+        }
+
+
+        .role-card i {
+
+            font-size: 22px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .role-card strong {
+
+            display: block;
+
+            font-size: 14px;
+
+        }
+
+
+        .role-card small {
+
+            display: block;
+
+            margin-top: 3px;
+
+            font-size: 14px;
+
+            color: #6b7280;
+
+        }
+
+
+        
+
+        .role-option:hover .role-card {
+
+            border-color: #6366f1;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        
+
+        .role-option.active .role-card {
+
+            border-color: #6366f1;
+
+            background: #eef2ff;
+
+            box-shadow:
+                0 0 0 2px rgba(
+                    99,
+                    102,
+                    241,
+                    0.10
+                );
+
+        }
+
+
+        .role-option.active
+        .role-card i {
+
+            color: #4f46e5;
+
+        }
+
+
+        
+
+        @media (max-width: 700px) {
+
+            .role-selector {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/api-config.js"></script>
+</head>
+
+
+<body class="auth-page login-page">
+
+<div class="auth-wrapper">
+
+
+
+
+
+    <section class="auth-visual">
+
+        <div class="auth-brand">
+
+            <div class="brand-icon">
+
+                <i class="bi bi-buildings"></i>
+
+            </div>
+
+            <span>
+                Campus<span>Venue</span>
+            </span>
+
+        </div>
+
+
+        <div class="visual-content">
+
+            <span class="visual-badge">
+
+                <i class="bi bi-stars"></i>
+
+                College event management
+
+            </span>
+
+
+            <h1>
+
+                Manage Every
+
+                <span>Campus Event</span>
+
+                Smarter.
+
+            </h1>
+
+
+            <p>
+
+                Organize venues, events, schedules and
+                campus activities from one centralized
+                platform.
+
+            </p>
+
+
+            <div class="visual-features">
+
+                <div>
+
+                    <i class="bi bi-calendar-check"></i>
+
+                    <span>
+                        Smart Event Scheduling
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="bi bi-buildings"></i>
+
+                    <span>
+                        Venue Management
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <span>
+                        Role Based Access
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="visual-footer">
+
+            <span>
+                © 2026 CampusVenue
+            </span>
+
+            <span>
+                College Management Platform
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <section class="auth-form-section">
+
+        <div class="auth-form-container">
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+
+
+
+
+            <div class="mobile-brand">
+
+                <div class="brand-icon">
+
+                    <i class="bi bi-buildings"></i>
+
+                </div>
+
+                <span>
+                    Campus<span>Venue</span>
+                </span>
+
+            </div>
+
+
+
+
+
+            <div class="auth-heading">
+
+                <span class="auth-label">
+                    WELCOME BACK
+                </span>
+
+                <h2>
+                    Sign in to your account
+                </h2>
+
+                <p>
+                    Access your campus events and
+                    venue management dashboard.
+                </p>
+
+            </div>
+
+
+
+
+
+            <form
+                id="loginForm"
+                class="auth-form"
+            >
+
+
+
+
+
+                <div class="role-selector">
+
+
+
+
+
+                    <label
+                        class="role-option active"
+                        data-role="student"
+                    >
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="student"
+                            checked
+                        >
+
+                        <div class="role-card">
+
+                            <i class="bi bi-person"></i>
+
+                            <div>
+
+                                <strong>
+                                    Student
+                                </strong>
+
+                                <small>
+                                    Event participant
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+
+
+
+                    <label
+                        class="role-option"
+                        data-role="organizer"
+                    >
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="organizer"
+                        >
+
+                        <div class="role-card">
+
+                            <i
+                                class="bi bi-person-badge"
+                            ></i>
+
+                            <div>
+
+                                <strong>
+                                    Organizer
+                                </strong>
+
+                                <small>
+                                    Manage events
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+
+
+
+                    <label
+                        class="role-option"
+                        data-role="admin"
+                    >
+
+                        <input
+                            type="radio"
+                            name="role"
+                            value="admin"
+                        >
+
+                        <div class="role-card">
+
+                            <i
+                                class="bi bi-shield-lock"
+                            ></i>
+
+                            <div>
+
+                                <strong>
+                                    Admin
+                                </strong>
+
+                                <small>
+                                    Manage platform
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                </div>
+
+
+
+
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+
+                        College Email / ID
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="bi bi-person input-icon"
+                        ></i>
+
+
+                        <input
+                            type="text"
+                            id="loginEmail"
+                            placeholder="Enter your college email or ID"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small
+                        class="field-error"
+                        id="loginEmailError"
+                    ></small>
+
+                </div>
+
+
+
+
+
+                <div class="form-group">
+
+
+                    <div class="label-row">
+
+                        <label for="loginPassword">
+
+                            Password
+
+                        </label>
+
+
+                        <a
+                            href="#"
+                            id="forgotPassword"
+                        >
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="bi bi-lock input-icon"
+                        ></i>
+
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-password-toggle="loginPassword"
+                        >
+
+                            <i
+                                class="bi bi-eye"
+                            ></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <small
+                        class="field-error"
+                        id="loginPasswordError"
+                    ></small>
+
+                </div>
+
+
+
+
+
+                <div class="form-options">
+
+                    <label class="checkbox-label">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <span
+                            class="custom-checkbox"
+                        ></span>
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+
+
+                <div
+                    id="loginMessage"
+                    class="auth-message"
+                ></div>
+
+
+
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                    id="loginSubmitButton"
+                >
+
+                    <span id="loginButtonText">
+                        Sign In
+                    </span>
+
+                    <i
+                        class="bi bi-arrow-right"
+                    ></i>
+
+                </button>
+
+
+
+
+
+                <div class="auth-divider">
+
+                    <span>
+                        OR CONTINUE WITH
+                    </span>
+
+                </div>
+
+
+
+
+
+                <button
+                    type="button"
+                    class="social-login"
+                    id="googleLogin"
+                >
+
+                    <span class="google-icon">
+                        G
+                    </span>
+
+                    Continue with Google
+
+                </button>
+
+
+
+
+
+                <p class="switch-auth">
+
+                    Don't have an account?
+
+                    <a href="/register.html">
+                        Create Account
+                    </a>
+
+                </p>
+
+
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+
+<script src="js/auth.js"></script>
+
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const roleOptions =
+            document.querySelectorAll(
+                ".role-option"
+            );
+
+
+        roleOptions.forEach(
+            function (option) {
+
+                option.addEventListener(
+                    "click",
+                    function () {
+
+                        
+
+                        roleOptions.forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        
+
+                        option.classList.add(
+                            "active"
+                        );
+
+
+                        
+
+                        const radio =
+                            option.querySelector(
+                                'input[type="radio"]'
+                            );
+
+
+                        if (radio) {
+
+                            radio.checked =
+                                true;
+
+                        }
+
+
+                        console.log(
+                            "Selected Role:",
+                            radio
+                                ? radio.value
+                                : "unknown"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        
+
+        const radios =
+            document.querySelectorAll(
+                'input[name="role"]'
+            );
+
+
+        radios.forEach(
+            function (radio) {
+
+                radio.addEventListener(
+                    "change",
+                    function () {
+
+                        roleOptions.forEach(
+                            function (option) {
+
+                                option.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        const parent =
+                            radio.closest(
+                                ".role-option"
+                            );
+
+
+                        if (parent) {
+
+                            parent.classList.add(
+                                "active"
+                            );
+
+                        }
+
+
+                        console.log(
+                            "Role changed to:",
+                            radio.value
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

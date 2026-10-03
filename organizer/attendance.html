@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance | CampusVenue</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/attendance.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body>
+
+    <div class="attendance-page">
+
+        <div class="page-container">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Attendance</h1>
+
+                    <p>
+                        Manage attendance for students registered
+                        in your events.
+                    </p>
+                </div>
+
+                <a
+                    href="my-events.html"
+                    class="back-btn"
+                >
+                    <i class="bi bi-arrow-left"></i>
+                    My Events
+                </a>
+
+            </div>
+
+            <div
+                id="attendanceLoading"
+                class="attendance-loading"
+                style="display:none;"
+            >
+                <i class="bi bi-arrow-repeat"></i>
+
+                <p>
+                    Loading attendance...
+                </p>
+            </div>
+
+            <div
+                id="attendanceError"
+                class="attendance-error"
+                style="display:none;"
+            ></div>
+
+            <div class="event-selector-card">
+
+                <div class="selector-header">
+
+                    <div>
+                        <h2>Select Event</h2>
+
+                        <p>
+                            Choose an event to manage attendance.
+                        </p>
+                    </div>
+
+                    <i class="bi bi-calendar-check"></i>
+
+                </div>
+
+                <select
+                    id="eventSelect"
+                    class="event-select"
+                >
+                    <option value="">
+                        Select an event
+                    </option>
+                </select>
+
+            </div>
+
+            <div
+                id="attendanceContent"
+                style="display:none;"
+            >
+
+                <div class="attendance-event-card">
+
+                    <div class="event-details">
+
+                        <h2 id="eventTitle">
+                            Event
+                        </h2>
+
+                        <div class="event-meta">
+
+                            <span>
+                                <i class="bi bi-calendar3"></i>
+                                <span id="eventDate">
+                                    --
+                                </span>
+                            </span>
+
+                            <span>
+                                <i class="bi bi-clock"></i>
+                                <span id="eventTime">
+                                    --
+                                </span>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="attendance-stats">
+
+                    <div class="attendance-stat">
+
+                        <span class="stat-icon total">
+                            <i class="bi bi-people"></i>
+                        </span>
+
+                        <div>
+                            <small>Total Students</small>
+                            <strong id="totalStudents">--</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="attendance-stat">
+
+                        <span class="stat-icon present">
+                            <i class="bi bi-check-circle"></i>
+                        </span>
+
+                        <div>
+                            <small>Present</small>
+                            <strong id="presentCount">--</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="attendance-stat">
+
+                        <span class="stat-icon absent">
+                            <i class="bi bi-x-circle"></i>
+                        </span>
+
+                        <div>
+                            <small>Absent</small>
+                            <strong id="absentCount">--</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="students-card">
+
+                    <div class="students-header">
+
+                        <div>
+                            <h2>Registered Students</h2>
+
+                            <p>
+                                Mark attendance for registered students.
+                            </p>
+                        </div>
+
+                        <div class="student-search">
+
+                            <i class="bi bi-search"></i>
+
+                            <input
+                                type="text"
+                                id="studentSearch"
+                                placeholder="Search student..."
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="studentsLoading"
+                        class="students-loading"
+                        style="display:none;"
+                    >
+                        <i class="bi bi-arrow-repeat"></i>
+                        Loading students...
+                    </div>
+
+                    <div
+                        id="studentsEmpty"
+                        class="students-empty"
+                        style="display:none;"
+                    >
+                        <i class="bi bi-person-x"></i>
+
+                        <h3>
+                            No Registered Students
+                        </h3>
+
+                        <p>
+                            No students have registered for this event yet.
+                        </p>
+                    </div>
+
+                    <div
+                        id="studentsTableWrapper"
+                        class="students-table-wrapper"
+                    >
+
+                        <table class="students-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Student
+                                    </th>
+
+                                    <th>
+                                        College ID
+                                    </th>
+
+                                    <th>
+                                        Department
+                                    </th>
+
+                                    <th>
+                                        Year
+                                    </th>
+
+                                    <th>
+                                        Attendance
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="studentsTableBody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        id="attendanceToast"
+        class="toast"
+    ></div>
+
+    <script src="../js/organizer-attendance.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+                protectPage("organizer");
+            }
+        );
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Account Registration | CampusVenue</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/auth.css"
+    >
+
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/api-config.js"></script>
+</head>
+
+<body>
+
+<div class="auth-wrapper">
+
+    <section class="auth-visual">
+
+        <div class="auth-brand">
+
+            <div class="brand-icon">
+                <i class="bi bi-buildings"></i>
+            </div>
+
+            <span>
+                Campus<span>Venue</span>
+            </span>
+
+        </div>
+
+        <div class="visual-content">
+
+            <span class="visual-badge">
+
+                <i class="bi bi-rocket-takeoff"></i>
+
+                Student Registration
+
+            </span>
+
+            <h1>
+
+                Your Campus.
+
+                <span>Your Events.</span>
+
+                One Platform.
+
+            </h1>
+
+            <p>
+
+                Create your student account and become
+                part of a smarter college event management
+                ecosystem.
+
+            </p>
+
+            <div class="visual-features">
+
+                <div>
+
+                    <i class="bi bi-calendar-event"></i>
+
+                    <span>
+                        Create & Track Events
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <i class="bi bi-geo-alt"></i>
+
+                    <span>
+                        Find Available Venues
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <i class="bi bi-people"></i>
+
+                    <span>
+                        Participate in Campus Activities
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="visual-footer">
+
+            <span>
+                © 2026 CampusVenue
+            </span>
+
+            <span>
+                College Management Platform
+            </span>
+
+        </div>
+
+    </section>
+
+    <section class="auth-form-section">
+
+        <div
+            class="auth-form-container register-container"
+        >
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+            <div class="mobile-brand">
+
+                <div class="brand-icon">
+
+                    <i class="bi bi-buildings"></i>
+
+                </div>
+
+                <span>
+                    Campus<span>Venue</span>
+                </span>
+
+            </div>
+
+            <div class="auth-heading">
+
+                <span class="auth-label">
+                    ACCOUNT REGISTRATION
+                </span>
+
+                <h2>
+                    Choose your account type
+                </h2>
+
+                <p>
+                    Register as a Student or request Organizer access for Admin approval.
+                </p>
+
+            </div>
+
+            <fieldset class="registration-role-picker">
+
+                <legend>Account type</legend>
+
+                <div class="role-selector">
+
+                    <label class="role-option registration-role-option active" for="registerRoleStudent">
+                        <input type="radio" name="registrationRole" id="registerRoleStudent" value="student" checked>
+                        <span class="role-card">
+                            <i class="bi bi-person"></i>
+                            <span>
+                                <strong>Student</strong>
+                                <small>Register for campus events</small>
+                            </span>
+                        </span>
+                    </label>
+
+                    <label class="role-option registration-role-option" for="registerRoleOrganizer">
+                        <input type="radio" name="registrationRole" id="registerRoleOrganizer" value="organizer">
+                        <span class="role-card">
+                            <i class="bi bi-calendar2-check"></i>
+                            <span>
+                                <strong>Organizer</strong>
+                                <small>Request Admin approval</small>
+                            </span>
+                        </span>
+                    </label>
+
+                </div>
+
+            </fieldset>
+
+            <form id="organizerRequestForm" class="auth-form" hidden>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="organizerName">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-person input-icon"></i>
+                            <input type="text" id="organizerName" autocomplete="name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="organizerCollegeId">College ID / Employee ID</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-card-text input-icon"></i>
+                            <input type="text" id="organizerCollegeId" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="organizerEmail">College Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-envelope input-icon"></i>
+                            <input type="email" id="organizerEmail" autocomplete="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="organizerPhone">Contact Number</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-phone input-icon"></i>
+                            <input type="tel" id="organizerPhone" autocomplete="tel" inputmode="tel" maxlength="20" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="organizerDepartment">Department</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-mortarboard input-icon"></i>
+                            <input type="text" id="organizerDepartment" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="organizerDesignation">Designation / Position</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-person-badge input-icon"></i>
+                            <input type="text" id="organizerDesignation" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="organizerType">Organizer Type</label>
+                    <div class="input-wrapper select-wrapper">
+                        <i class="bi bi-people input-icon"></i>
+                        <select id="organizerType" required>
+                            <option value="">Select organizer type</option>
+                            <option value="faculty-coordinator">Faculty Coordinator</option>
+                            <option value="staff-coordinator">Staff Coordinator</option>
+                            <option value="club-coordinator">Club Coordinator</option>
+                            <option value="student-club-representative">Student Club Representative</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="organizerClubField" class="form-group organizer-conditional-field" hidden>
+                    <label for="organizerClubName">Club / Society Name</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-people input-icon"></i>
+                        <input type="text" id="organizerClubName" disabled>
+                    </div>
+                </div>
+
+                <div id="organizerFacultyField" class="form-group organizer-conditional-field" hidden>
+                    <label for="organizerFacultyCoordinator">Faculty Coordinator Name</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-person-check input-icon"></i>
+                        <input type="text" id="organizerFacultyCoordinator" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="organizerResponsibilities">Short Description of Responsibilities</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-card-text input-icon"></i>
+                        <textarea id="organizerResponsibilities" rows="3" maxlength="500" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="organizerReason">Reason for Requesting Organizer Access</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-chat-left-text input-icon"></i>
+                        <textarea id="organizerReason" rows="3" maxlength="500" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="organizerPassword">Password</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-lock input-icon"></i>
+                            <input type="password" id="organizerPassword" minlength="8" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" title="Use at least 8 characters with uppercase, lowercase, and a number." autocomplete="new-password" required>
+                            <button type="button" class="password-toggle" data-password-toggle="organizerPassword">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="organizerConfirmPassword">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-shield-lock input-icon"></i>
+                            <input type="password" id="organizerConfirmPassword" minlength="8" autocomplete="new-password" required>
+                            <button type="button" class="password-toggle" data-password-toggle="organizerConfirmPassword">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="terms-label">
+                    <input type="checkbox" id="organizerTermsAccepted" required>
+                    <span class="custom-checkbox"></span>
+                    <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
+                </label>
+
+                <div id="organizerRegisterMessage" class="auth-message" role="status" aria-live="polite"></div>
+
+                <button type="submit" id="organizerRegisterSubmit" class="auth-submit">
+                    <span>Submit Organizer Request</span>
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+                <p class="switch-auth">
+                    Already have an account?
+                    <a href="login.html">Sign In</a>
+                </p>
+
+            </form>
+
+            <form
+                id="registerForm"
+                class="auth-form"
+            >
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="bi bi-person input-icon"
+                            ></i>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter full name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="fullNameError"
+                        ></small>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="collegeId">
+                            College ID
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="bi bi-card-text input-icon"
+                            ></i>
+
+                            <input
+                                type="text"
+                                id="collegeId"
+                                placeholder="e.g. BCA2026001"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="collegeIdError"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="registerEmail">
+                            College Email
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="bi bi-envelope input-icon"
+                            ></i>
+
+                            <input
+                                type="email"
+                                id="registerEmail"
+                                placeholder="yourname@college.edu"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="registerEmailError"
+                        ></small>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="bi bi-phone input-icon"
+                            ></i>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="10 digit number"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="phoneError"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <div
+                            class="input-wrapper select-wrapper"
+                        >
+
+                            <i
+                                class="bi bi-mortarboard input-icon"
+                            ></i>
+
+                            <select
+                                id="department"
+                                required
+                            >
+
+                                <option value="">
+                                    Select department
+                                </option>
+
+                                <option value="bca">
+                                    BCA
+                                </option>
+
+                                <option value="btech">
+                                    B.Tech
+                                </option>
+
+                                <option value="mca">
+                                    MCA
+                                </option>
+
+                                <option value="bba">
+                                    BBA
+                                </option>
+
+                                <option value="bsc">
+                                    B.Sc
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="year">
+                            Year / Semester
+                        </label>
+
+                        <div
+                            class="input-wrapper select-wrapper"
+                        >
+
+                            <i
+                                class="bi bi-calendar3 input-icon"
+                            ></i>
+
+                            <select
+                                id="year"
+                                required
+                            >
+
+                                <option value="">
+                                    Select year
+                                </option>
+
+                                <option value="1">
+                                    1st Year
+                                </option>
+
+                                <option value="2">
+                                    2nd Year
+                                </option>
+
+                                <option value="3">
+                                    3rd Year
+                                </option>
+
+                                <option value="4">
+                                    4th Year
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="registerPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+                            <i
+                                class="bi bi-lock input-icon"
+                            ></i>
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                placeholder="Create password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-password-toggle="registerPassword"
+                            >
+
+                                <i
+                                    class="bi bi-eye"
+                                ></i>
+
+                            </button>
+
+                        </div>
+
+                        <div class="password-strength">
+
+                            <div class="strength-bar">
+
+                                <span></span>
+
+                            </div>
+
+                            <small
+                                id="passwordStrength"
+                            >
+                                Password strength
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="bi bi-shield-lock input-icon"
+                            ></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-password-toggle="confirmPassword"
+                            >
+
+                                <i
+                                    class="bi bi-eye"
+                                ></i>
+
+                            </button>
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="confirmPasswordError"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+                <label class="terms-label">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span
+                        class="custom-checkbox"
+                    ></span>
+
+                    <span>
+
+                        I agree to the
+
+                        <a href="#">
+                            Terms of Service
+                        </a>
+
+                        and
+
+                        <a href="#">
+                            Privacy Policy
+                        </a>.
+
+                    </span>
+
+                </label>
+
+                <div
+                    id="registerMessage"
+                    class="auth-message"
+                ></div>
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                >
+
+                    <span>
+                        Create Student Account
+                    </span>
+
+                    <i
+                        class="bi bi-arrow-right"
+                    ></i>
+
+                </button>
+
+                <p class="switch-auth">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Sign In
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="js/auth.js"></script>
+
+</body>
+
+</html>

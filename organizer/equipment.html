@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Equipment Request | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/equipment-request.css">
+    <link rel="stylesheet" href="../css/organizer-dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page">
+
+<header class="topbar organizer-topbar">
+    <div class="container">
+        <nav class="navbar">
+
+            <button
+                type="button"
+                class="organizer-menu-toggle"
+                id="organizerMenuToggle"
+                aria-controls="organizerNavLinks"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+            <div class="nav-links" id="organizerNavLinks">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="create-event.html">Create Event</a>
+                <a href="my-events.html">My Events</a>
+                <a href="venue-request.html">Venue Request</a>
+                <a href="schedule.html">Schedule</a>
+                <a href="volunteers.html">Volunteers</a>
+                <a href="equipment.html" class="active">Equipment</a>
+                <a href="attendance.html">Attendance</a>
+                <a href="notifications.html" class="notification-link">
+                    <span aria-hidden="true">&#128276;</span>
+                    <span id="notificationCount" class="notification-badge">0</span>
+                </a>
+            </div>
+
+            <button class="btn btn-outline" onclick="logout()">
+                Logout
+            </button>
+
+        </nav>
+    </div>
+</header>
+
+<main class="container section">
+
+    <div class="page-header">
+        <h1>Equipment Request</h1>
+        <p>Request equipment required for your upcoming event.</p>
+    </div>
+
+    <div class="form-box">
+
+        <form id="equipmentForm">
+
+            <div class="grid">
+
+                <div class="group full">
+                    <label for="event">Event *</label>
+
+                    <select id="event" required>
+                        <option value="">Loading your events...</option>
+                    </select>
+
+                    <small id="eventMessage"></small>
+                </div>
+
+                <div class="group">
+                    <label for="equipment">Equipment *</label>
+
+                    <select id="equipment" required>
+                        <option value="">Select Equipment</option>
+                        <option value="Projector">Projector</option>
+                        <option value="Wireless Microphone">Wireless Microphone</option>
+                        <option value="Speaker System">Speaker System</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Extension Board">Extension Board</option>
+                        <option value="Camera">Camera</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label for="quantity">Quantity *</label>
+
+                    <input
+                        id="quantity"
+                        type="number"
+                        min="1"
+                        value="1"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label for="date">Required Date *</label>
+
+                    <input
+                        id="date"
+                        type="date"
+                        required
+                    >
+                </div>
+
+                <div class="group">
+                    <label for="time">Required Time *</label>
+
+                    <input
+                        id="time"
+                        type="time"
+                        required
+                    >
+                </div>
+
+                <div class="group full">
+                    <label for="notes">Additional Requirements</label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Mention any special requirement..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button
+                    class="btn btn-primary"
+                    type="submit"
+                    id="submitEquipmentRequest"
+                >
+                    Submit Equipment Request
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="request-list">
+
+        <h2>My Equipment Requests</h2>
+
+        <div id="requestList"></div>
+
+    </div>
+
+</main>
+
+<script src="../js/auth.js"></script>
+<script src="../js/organizer-menu.js"></script>
+<script src="../js/equipment-request.js"></script>
+<script src="../js/organizer-notification.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("organizer");
+});
+</script>
+
+</body>
+</html>

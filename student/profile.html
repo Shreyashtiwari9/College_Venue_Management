@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Profile | CampusVenue</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/profile.css">
+
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body>
+
+  <main class="profile-page">
+
+    <a href="dashboard.html" class="back-link">
+      ← Back to Dashboard
+    </a>
+
+    
+    <section class="profile-header">
+
+      <div class="profile-avatar" id="profileAvatar">
+        ST
+      </div>
+
+      <div class="profile-header-content">
+
+        <h1 id="profileName">
+          Student Name
+        </h1>
+
+        <p id="profileEmail">
+          student@college.edu
+        </p>
+
+        <p id="profileId">
+          College ID: STU2026001
+        </p>
+
+        <span class="student-badge">
+          🎓 Student Account
+        </span>
+
+      </div>
+
+    </section>
+
+    <div class="profile-grid">
+
+      
+      <div>
+
+        
+        <section class="card">
+
+          <div class="card-title">
+            <h2>Personal Information</h2>
+            <span>Account Details</span>
+          </div>
+
+          <div class="info-grid">
+
+            <div class="info-box">
+              <div class="info-label">Full Name</div>
+              <div class="info-value" id="infoName">
+                Student Name
+              </div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">College ID</div>
+              <div class="info-value" id="infoId">
+                STU2026001
+              </div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Email</div>
+              <div class="info-value" id="infoEmail">
+                student@college.edu
+              </div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Role</div>
+              <div class="info-value">
+                Student
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        
+        <section class="card">
+
+          <div class="card-title">
+            <h2>Edit Profile</h2>
+            <span>Update your information</span>
+          </div>
+
+          <form class="profile-form" id="profileForm">
+
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="collegeId">College ID</label>
+              <input
+                type="text"
+                id="collegeId"
+                placeholder="College ID"
+                disabled
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Enter phone number"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department">
+                <option value="">Select Department</option>
+                <option value="BCA">BCA</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="MCA">MCA</option>
+                <option value="B.Sc CS">B.Sc CS</option>
+                <option value="M.Sc CS">M.Sc CS</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="year">Year</label>
+              <select id="year">
+                <option value="">Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <button type="submit" class="save-btn">
+                Save Changes
+              </button>
+            </div>
+
+          </form>
+
+        </section>
+
+      </div>
+
+      
+      <aside>
+
+        
+        <section class="card">
+
+          <div class="card-title">
+            <h2>My Activity</h2>
+          </div>
+
+          <div class="stats-grid">
+
+            <div class="stat-box">
+              <div class="stat-number" id="profileEventsCount">--</div>
+              <div class="stat-label">Events</div>
+            </div>
+
+            <div class="stat-box">
+              <div class="stat-number" id="profileUpcomingCount">--</div>
+              <div class="stat-label">Upcoming</div>
+            </div>
+
+            <div class="stat-box">
+              <div class="stat-number" id="profileCompletedCount">--</div>
+              <div class="stat-label">Completed</div>
+            </div>
+
+            <div class="stat-box">
+              <div class="stat-number" id="profileAttendanceCount">--</div>
+              <div class="stat-label">Attendance</div>
+            </div>
+
+          </div>
+
+        </section>
+
+        
+        <section class="card">
+
+          <div class="card-title">
+            <h2>Quick Access</h2>
+          </div>
+
+          <div class="quick-list">
+
+            <div class="quick-item" onclick="location.href='my-events.html'" style="cursor:pointer;">
+              <div class="quick-icon">📅</div>
+              My Events
+            </div>
+
+            <div class="quick-item" onclick="location.href='notifications.html'" style="cursor:pointer;">
+              <div class="quick-icon">🔔</div>
+              Notifications
+            </div>
+
+            <div class="quick-item" onclick="location.href='venues.html'" style="cursor:pointer;">
+              <div class="quick-icon">🏢</div>
+              Browse Venues
+            </div>
+
+            <div class="quick-item" onclick="location.href='event.html'" style="cursor:pointer;">
+              <div class="quick-icon">🎫</div>
+              Browse Events
+            </div>
+
+          </div>
+
+        </section>
+
+        
+        <section class="card">
+
+          <div class="card-title">
+            <h2>Account</h2>
+          </div>
+
+          <button class="danger-btn" onclick="logout()">
+            Logout from Account
+          </button>
+
+        </section>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <div class="toast" id="toast">
+    Profile updated successfully.
+  </div>
+
+  <script src="../js/profile.js"></script>
+
+
+<script src="../js/auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("student");
+});
+</script>
+</body>
+</html>

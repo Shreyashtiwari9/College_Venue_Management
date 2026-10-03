@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback Management | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-feedback.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page">
+
+<header class="topbar">
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="users.html">
+                    Users
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="approvals.html">
+                    Approvals
+                </a>
+
+                <a href="equipment.html">
+                    Equipment
+                </a>
+
+                <a href="reports.html">
+                    Reports
+                </a>
+
+                <a href="feedback.html" class="active">
+                    Feedback
+                </a>
+
+            </div>
+
+            <button
+                onclick="logout()"
+                class="btn btn-outline">
+                Logout
+            </button>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<main class="container section">
+
+    <div class="page-header">
+
+        <h1>
+            Feedback Management
+        </h1>
+
+        <p>
+            Review feedback submitted by students and event organizers.
+        </p>
+
+    </div>
+
+    <div class="summary">
+
+        <div class="feedback-card">
+
+            <h3>
+                Average Rating
+            </h3>
+
+            <div class="rating">
+                0 / 5
+            </div>
+
+            <p>
+                Based on 0 responses
+            </p>
+
+        </div>
+
+        <div class="feedback-card">
+
+            <h3>
+                Positive Feedback
+            </h3>
+
+            <div class="rating">
+                0%
+            </div>
+
+            <p>
+                Users satisfied with services
+            </p>
+
+        </div>
+
+        <div class="feedback-card">
+
+            <h3>
+                Pending Reviews
+            </h3>
+
+            <div class="rating">
+                0
+            </div>
+
+            <p>
+                Need administrative attention
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="feedback-container">
+
+        <div class="filter">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search feedback..."
+            >
+
+            <select id="rating">
+
+                <option value="">
+                    All Ratings
+                </option>
+
+                <option value="5">
+                    5 Stars
+                </option>
+
+                <option value="4">
+                    4 Stars
+                </option>
+
+                <option value="3">
+                    3 Stars
+                </option>
+
+                <option value="2">
+                    2 Stars
+                </option>
+
+                <option value="1">
+                    1 Star
+                </option>
+
+            </select>
+
+        </div>
+
+        <div id="feedbackList">
+
+            <div class="feedback-loading">
+                Loading feedback...
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script src="../js/auth.js"></script>
+<script src="../js/admin-feedback.js"></script>
+
+</body>
+
+</html>

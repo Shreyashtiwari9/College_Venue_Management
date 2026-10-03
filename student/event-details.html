@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/event-details.css">
+
+
+    <style>
+
+        .event-loading,
+        .event-error {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .event-loading {
+            background: #f5f7fa;
+            color: #555;
+        }
+
+        .event-error {
+            background: #fff1f1;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            display: none;
+        }
+
+        .dynamic-section {
+            display: none;
+        }
+
+        .event-status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .event-status-badge.approved {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .event-status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .event-status-badge.rejected {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .event-status-badge.cancelled {
+            background: #e2e3e5;
+            color: #41464b;
+        }
+
+        .registered-note {
+            display: none;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+
+<body>
+
+
+
+
+
+<div
+    id="eventLoading"
+    class="event-loading"
+>
+
+    <i class="bi bi-hourglass-split"></i>
+
+    <h2>
+        Loading event...
+    </h2>
+
+    <p>
+        Please wait while event information is being loaded.
+    </p>
+
+</div>
+
+
+
+
+
+<div
+    id="eventError"
+    class="event-error"
+>
+
+    <i class="bi bi-exclamation-triangle"></i>
+
+    <h2>
+        Unable to Load Event
+    </h2>
+
+    <p id="eventErrorMessage">
+        Something went wrong.
+    </p>
+
+    <button
+        class="register-now"
+        onclick="goBack()"
+    >
+        Back to Events
+    </button>
+
+</div>
+
+
+
+
+
+<div
+    class="details-page dynamic-section"
+    id="eventDetailsPage"
+>
+
+
+
+
+
+    <div class="details-topbar">
+
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back to Events
+
+        </button>
+
+
+        <div class="breadcrumb">
+
+            Student / Events / Details
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <section class="event-hero">
+
+        <div class="hero-pattern"></div>
+
+        <i
+            class="bi bi-calendar-event hero-icon"
+            id="heroIcon"
+        ></i>
+
+
+        <div class="hero-content">
+
+            <span class="event-tag">
+
+                <i
+                    class="bi bi-calendar-event"
+                    id="eventTagIcon"
+                ></i>
+
+                <span id="eventTag">
+                    College Event
+                </span>
+
+            </span>
+
+
+            <h1 id="eventTitle">
+                Event
+            </h1>
+
+
+            <p id="eventDescription">
+                Event description
+            </p>
+
+
+            <span
+                id="eventStatus"
+                class="event-status-badge approved"
+            >
+                Approved
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <div class="details-container">
+
+
+
+
+
+        <div>
+
+            <div class="info-card">
+
+
+                <h2 class="section-title">
+                    Event Information
+                </h2>
+
+
+                <div class="event-info-grid">
+
+
+
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-calendar-event"></i>
+
+                        </div>
+
+                        <div class="info-text">
+
+                            <small>
+                                DATE
+                            </small>
+
+                            <strong id="eventDate">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-clock"></i>
+
+                        </div>
+
+                        <div class="info-text">
+
+                            <small>
+                                TIME
+                            </small>
+
+                            <strong id="eventTime">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-people"></i>
+
+                        </div>
+
+                        <div class="info-text">
+
+                            <small>
+                                EXPECTED PARTICIPANTS
+                            </small>
+
+                            <strong id="eventParticipants">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="bi bi-building"></i>
+
+                        </div>
+
+                        <div class="info-text">
+
+                            <small>
+                                VENUE CAPACITY
+                            </small>
+
+                            <strong id="venueCapacity">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="description">
+
+                    <h2 class="section-title">
+                        About This Event
+                    </h2>
+
+                    <p id="aboutEvent">
+                        —
+                    </p>
+
+                </div>
+
+
+
+
+
+                <div class="highlights">
+
+                    <h2 class="section-title">
+                        Event Highlights
+                    </h2>
+
+
+                    <div class="highlight-list">
+
+
+                        <div class="highlight">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Event approved by CampusVenue
+
+                        </div>
+
+
+                        <div class="highlight">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Venue assigned successfully
+
+                        </div>
+
+
+                        <div class="highlight">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Open for college students
+
+                        </div>
+
+
+                        <div class="highlight">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Check event time before attending
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div>
+
+            <div class="register-card">
+
+
+                <h2>
+                    Event Registration
+                </h2>
+
+
+                <p>
+                    Reserve your seat for this event. Your registration status will update here immediately.
+                </p>
+
+
+
+
+
+                <div class="seat-box">
+
+                    <div class="seat-header">
+
+                        <span>
+                            Expected Participants
+                        </span>
+
+                        <span id="seatCount">
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="progressBar"
+                            style="width:0%;"
+                        ></div>
+
+                    </div>
+
+
+                    <p
+                        id="seatInfo"
+                        style="
+                            margin:10px 0 0;
+                            color:#6b7280;
+                            font-size:11px;
+                        "
+                    >
+                        Registration system will be connected next.
+
+                    </p>
+
+                </div>
+
+
+
+
+
+                <button
+                    class="register-now"
+                    id="registerBtn"
+                    onclick="registerForEvent()"
+                >
+
+                    <i class="bi bi-check2-circle"></i>
+
+                    Register Now
+
+                </button>
+
+
+                <div
+                    class="registered-note"
+                    id="registeredNote"
+                >
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    You are registered for this event.
+
+                </div>
+
+
+
+
+
+                <div class="organizer-box">
+
+                    <small>
+                        ORGANIZED BY
+                    </small>
+
+
+                    <div class="organizer">
+
+
+                        <div
+                            class="organizer-avatar"
+                            id="organizerAvatar"
+                        >
+                            O
+                        </div>
+
+
+                        <div>
+
+                            <strong id="organizerName">
+                                Event Organizer
+                            </strong>
+
+                            <span id="organizerInfo">
+                                College Event Organizer
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="venue-card">
+
+
+        <h2 class="section-title">
+            Event Venue
+        </h2>
+
+
+        <div class="venue-content">
+
+
+            <div class="venue-info">
+
+
+                <div class="venue-icon">
+
+                    <i class="bi bi-building"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3 id="eventVenueName">
+                        —
+                    </h3>
+
+
+                    <p id="eventVenueLocation">
+                        —
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="venue-btn"
+                onclick="viewVenue()"
+            >
+
+                <i class="bi bi-geo-alt"></i>
+
+                View Venue
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script src="../js/event-details.js"></script>
+
+<script src="../js/auth.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        protectPage("student");
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

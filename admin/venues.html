@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Manage Venues | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-venues.css">
+
+    <style>
+
+        .venue-loading,
+        .venue-error,
+        .no-venues {
+            width: 100%;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .venue-loading {
+            background: #f5f7fa;
+            color: #555;
+        }
+
+        .venue-error {
+            background: #fff1f1;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            display: none;
+        }
+
+        .no-venues {
+            background: #f5f7fa;
+            color: #666;
+            display: none;
+        }
+
+        .venue-description {
+            color: #666;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .venue-facilities {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+
+        .facility-tag {
+            display: inline-block;
+            background: #f1f3f5;
+            padding: 4px 9px;
+            margin: 3px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .venue-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background: #b02a37;
+        }
+
+        .status.maintenance {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.occupied {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .status.available {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .venue-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .venue-modal.active {
+            display: flex;
+        }
+
+        .venue-modal-content {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .venue-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .venue-modal-header h2 {
+            margin: 0;
+        }
+
+        .close-modal {
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .venue-form-group {
+            margin-bottom: 15px;
+        }
+
+        .venue-form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .venue-form-group input,
+        .venue-form-group textarea,
+        .venue-form-group select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .venue-form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .venue-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+
+<body class="role-page">
+
+
+<header class="topbar">
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="users.html">
+                    Users
+                </a>
+
+                <a href="venues.html" class="active">
+                    Venues
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="approvals.html">
+                    Approvals
+                </a>
+
+                <a href="reports.html">
+                    Reports
+                </a>
+
+            </div>
+
+            <div class="nav-actions">
+
+                <button
+                    onclick="logout()"
+                    class="btn btn-outline"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container section">
+
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="eyebrow">
+                ADMIN PANEL
+            </span>
+
+            <h1>
+                Venue Management
+            </h1>
+
+            <p>
+                Add, monitor and manage all college venues.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="toolbar">
+
+        <div class="filter-group">
+
+            <label for="search">
+                Search Venue
+            </label>
+
+            <input
+                id="search"
+                type="text"
+                placeholder="Search venue..."
+            >
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <label for="filter">
+                Availability
+            </label>
+
+            <select id="filter">
+
+                <option value="">
+                    All Venues
+                </option>
+
+                <option value="available">
+                    Available
+                </option>
+
+                <option value="occupied">
+                    Occupied
+                </option>
+
+                <option value="maintenance">
+                    Maintenance
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="add-venue-wrapper">
+
+            <button
+                onclick="addVenue()"
+                class="btn btn-primary"
+            >
+                + Add Venue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="venueLoading"
+        class="venue-loading"
+    >
+        Loading venues...
+    </div>
+
+
+    <div
+        id="venueError"
+        class="venue-error"
+    ></div>
+
+
+    <div
+        class="grid"
+        id="venueGrid"
+    ></div>
+
+
+    <div
+        id="noVenues"
+        class="no-venues"
+    >
+        No venues found.
+    </div>
+
+
+</main>
+
+
+
+
+
+<div
+    id="venueModal"
+    class="venue-modal"
+>
+
+    <div class="venue-modal-content">
+
+        <div class="venue-modal-header">
+
+            <h2 id="modalTitle">
+                Add Venue
+            </h2>
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="closeVenueModal()"
+            >
+                &times;
+            </button>
+
+        </div>
+
+
+        <form id="venueForm">
+
+            <input
+                type="hidden"
+                id="venueId"
+            >
+
+
+            <div class="venue-form-group">
+
+                <label for="venueName">
+                    Venue Name
+                </label>
+
+                <input
+                    type="text"
+                    id="venueName"
+                    placeholder="e.g. Main Auditorium"
+                    required
+                >
+
+            </div>
+
+
+            <div class="venue-form-group">
+
+                <label for="venueLocation">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="venueLocation"
+                    placeholder="e.g. Block A, Ground Floor"
+                    required
+                >
+
+            </div>
+
+
+            <div class="venue-form-group">
+
+                <label for="venueCapacity">
+                    Capacity
+                </label>
+
+                <input
+                    type="number"
+                    id="venueCapacity"
+                    min="1"
+                    placeholder="e.g. 500"
+                    required
+                >
+
+            </div>
+
+
+            <div class="venue-form-group">
+
+                <label for="venueStatus">
+                    Status
+                </label>
+
+                <select id="venueStatus">
+
+                    <option value="available">
+                        Available
+                    </option>
+
+                    <option value="occupied">
+                        Occupied
+                    </option>
+
+                    <option value="maintenance">
+                        Maintenance
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="venue-form-group">
+
+                <label for="venueDescription">
+                    Description
+                </label>
+
+                <textarea
+                    id="venueDescription"
+                    placeholder="Describe this venue..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="venue-form-group">
+
+                <label for="venueFacilities">
+                    Facilities
+                </label>
+
+                <input
+                    type="text"
+                    id="venueFacilities"
+                    placeholder="Projector, AC, Wi-Fi, Sound System"
+                >
+
+            </div>
+
+
+            <div class="venue-form-group">
+
+                <label for="venueImage">
+                    Image URL
+                </label>
+
+                <input
+                    type="text"
+                    id="venueImage"
+                    placeholder="Optional image URL"
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    onclick="closeVenueModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="saveVenueButton"
+                >
+                    Save Venue
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../js/auth.js"></script>
+
+<script src="../js/venues.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        protectPage("admin");
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

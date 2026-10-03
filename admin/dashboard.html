@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-dasboard.css">
+    <link rel="stylesheet" href="../css/glass-3d.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+
+<body class="role-page">
+
+
+<header class="topbar">
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="dashboard.html" class="active">
+                    Dashboard
+                </a>
+
+                <a href="users.html">
+                    Users
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="approvals.html">
+                    Approvals
+                </a>
+
+                <a href="reports.html">
+                    Reports
+                </a>
+
+                <a href="equipment.html">
+                    Equipment
+                </a>
+
+                <a href="feedback.html">
+                    Feedback
+                </a>
+
+            </div>
+
+
+            <div class="nav-actions">
+
+                <button
+                    onclick="logout()"
+                    class="btn btn-outline"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container section">
+
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="eyebrow">
+                ADMIN PANEL
+            </span>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage users, events, venues, approvals and college resources.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-grid">
+
+
+
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon">
+                👥
+            </div>
+
+            <h3>
+                Total Users
+            </h3>
+
+            <div
+                class="admin-number"
+                id="totalUserCount"
+            >
+                —
+            </div>
+
+            <small>
+                Accounts in database
+            </small>
+
+        </div>
+
+
+
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon">
+                📅
+            </div>
+
+            <h3>
+                Total Events
+            </h3>
+
+            <div
+                class="admin-number"
+                id="totalEventCount"
+            >
+                --
+            </div>
+
+            <small>
+
+                <span id="upcomingEventCount">
+                    --
+                </span>
+
+                upcoming
+
+            </small>
+
+        </div>
+
+
+
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon">
+                🏛️
+            </div>
+
+            <h3>
+                Total Venues
+            </h3>
+
+            <div
+                class="admin-number"
+                id="totalVenueCount"
+            >
+                --
+            </div>
+
+            <small>
+
+                <span id="availableVenueCount">
+                    --
+                </span>
+
+                available
+
+            </small>
+
+        </div>
+
+
+
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon">
+                ⏳
+            </div>
+
+            <h3>
+                Pending Requests
+            </h3>
+
+            <div
+                class="admin-number"
+                id="pendingEventCount"
+            >
+                --
+            </div>
+
+            <small>
+                Need attention
+            </small>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="admin-layout">
+
+
+
+
+
+        <div class="admin-card">
+
+            <h2>
+                Recent Activities
+            </h2>
+
+
+            <div
+                id="recentActivities"
+            >
+
+                <div class="activity">
+
+                    <div>
+
+                        <strong>
+                            Loading...
+                        </strong>
+
+                        <p>
+                            Loading recent events from database.
+                        </p>
+
+                    </div>
+
+                    <span class="badge pending">
+                        Loading
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="admin-card quick-actions-card">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+
+            <div class="quick-action-grid">
+
+                <a href="approvals.html" class="btn btn-primary quick-action-btn">
+                    <i class="bi bi-clipboard-check quick-action-icon" aria-hidden="true"></i>
+                    <span class="quick-action-label">Review Approvals</span>
+                </a>
+
+                <a href="users.html" class="btn btn-outline quick-action-btn">
+                    <i class="bi bi-people quick-action-icon" aria-hidden="true"></i>
+                    <span class="quick-action-label">Manage Users</span>
+                </a>
+
+                <a href="venues.html" class="btn btn-outline quick-action-btn">
+                    <i class="bi bi-buildings quick-action-icon" aria-hidden="true"></i>
+                    <span class="quick-action-label">Manage Venues</span>
+                </a>
+
+                <a href="reports.html" class="btn btn-outline quick-action-btn">
+                    <i class="bi bi-bar-chart-line quick-action-icon" aria-hidden="true"></i>
+                    <span class="quick-action-label">View Reports</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<script src="../js/auth.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        protectPage("admin");
+
+        loadAdminDashboard();
+
+    }
+);
+
+
+
+
+
+async function loadAdminDashboard() {
+
+    await Promise.all([
+        loadEventStatistics(),
+        loadVenueStatistics(),
+        loadUserStatistics()
+    ]);
+
+}
+
+async function loadUserStatistics() {
+    const countElement = document.getElementById("totalUserCount");
+
+    try {
+        const response = await fetch("/api/admin/users", {
+            headers: {
+                Authorization:
+                    `Bearer ${localStorage.getItem("campusVenueToken")}`
+            }
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(result.message || "Unable to load users.");
+        }
+
+        countElement.textContent = String(result.count ?? result.users?.length ?? 0);
+    } catch (error) {
+        console.error("Admin User API Error:", error);
+        countElement.textContent = "Unavailable";
+    }
+}
+
+
+
+
+
+async function loadEventStatistics() {
+
+    const totalEventCount =
+        document.getElementById(
+            "totalEventCount"
+        );
+
+
+    const upcomingEventCount =
+        document.getElementById(
+            "upcomingEventCount"
+        );
+
+
+    const pendingEventCount =
+        document.getElementById(
+            "pendingEventCount"
+        );
+
+
+    try {
+
+        const response =
+            await fetch("/api/events", {
+                headers: {
+                    Authorization:
+                        `Bearer ${localStorage.getItem("campusVenueToken")}`
+                }
+            });
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load event data"
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "Admin Event API Response:",
+            result
+        );
+
+
+        const events =
+            Array.isArray(result.events)
+                ? result.events
+                : [];
+
+
+        
+
+        if (totalEventCount) {
+
+            totalEventCount.textContent =
+                events.length;
+
+        }
+
+
+        
+
+        const pendingEvents =
+            events.filter(
+                event =>
+                    event.status === "pending"
+            );
+
+
+        if (pendingEventCount) {
+
+            pendingEventCount.textContent =
+                pendingEvents.length;
+
+        }
+
+
+        
+
+        const today =
+            new Date();
+
+
+        today.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        const upcomingEvents =
+            events.filter(event => {
+
+                if (!event.eventDate) {
+                    return false;
+                }
+
+
+                const eventDate =
+                    new Date(
+                        event.eventDate
+                    );
+
+
+                return (
+                    eventDate >= today &&
+                    event.status !== "cancelled" &&
+                    event.status !== "rejected"
+                );
+
+            });
+
+
+        if (upcomingEventCount) {
+
+            upcomingEventCount.textContent =
+                upcomingEvents.length;
+
+        }
+
+
+        
+
+        renderRecentActivities(events);
+
+
+    } catch (error) {
+
+        console.error(
+            "Admin Event API Error:",
+            error
+        );
+
+
+        if (totalEventCount) {
+            totalEventCount.textContent = "—";
+        }
+
+
+        if (upcomingEventCount) {
+            upcomingEventCount.textContent = "—";
+        }
+
+
+        if (pendingEventCount) {
+            pendingEventCount.textContent = "—";
+        }
+
+
+        renderRecentActivitiesError();
+
+    }
+
+}
+
+
+
+
+
+async function loadVenueStatistics() {
+
+    const totalVenueCount =
+        document.getElementById(
+            "totalVenueCount"
+        );
+
+
+    const availableVenueCount =
+        document.getElementById(
+            "availableVenueCount"
+        );
+
+
+    try {
+
+        const response =
+            await fetch("/api/venues", {
+                headers: {
+                    Authorization:
+                        `Bearer ${localStorage.getItem("campusVenueToken")}`
+                }
+            });
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load venue data"
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "Admin Venue API Response:",
+            result
+        );
+
+
+        const venues =
+            Array.isArray(result.venues)
+                ? result.venues
+                : [];
+
+
+        
+
+        if (totalVenueCount) {
+
+            totalVenueCount.textContent =
+                venues.length;
+
+        }
+
+
+        
+
+        const availableVenues =
+            venues.filter(
+                venue =>
+                        venue.availability === "available"
+            );
+
+
+        if (availableVenueCount) {
+
+            availableVenueCount.textContent =
+                availableVenues.length;
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Admin Venue API Error:",
+            error
+        );
+
+
+        if (totalVenueCount) {
+            totalVenueCount.textContent = "—";
+        }
+
+
+        if (availableVenueCount) {
+            availableVenueCount.textContent = "—";
+        }
+
+    }
+
+}
+
+
+
+
+
+function renderRecentActivities(events) {
+
+    const container =
+        document.getElementById(
+            "recentActivities"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    if (!events.length) {
+
+        container.innerHTML = `
+
+            <div class="activity">
+
+                <div>
+
+                    <strong>
+                        No events found
+                    </strong>
+
+                    <p>
+                        There are currently no events in the database.
+                    </p>
+
+                </div>
+
+                <span class="badge pending">
+                    Empty
+                </span>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+
+
+
+    const recentEvents =
+        [...events]
+            .sort(
+                (a, b) =>
+                    new Date(b.createdAt || 0) -
+                    new Date(a.createdAt || 0)
+            )
+            .slice(0, 5);
+
+
+    recentEvents.forEach(event => {
+
+        const title =
+            escapeHTML(
+                event.title ||
+                "Untitled Event"
+            );
+
+
+        const organizer =
+            escapeHTML(
+                event.organizer?.name ||
+                "Unknown Organizer"
+            );
+
+
+        const status =
+            normalizeStatus(
+                event.status
+            );
+
+
+        const date =
+            formatDate(
+                event.eventDate
+            );
+
+
+        const activity =
+            document.createElement(
+                "div"
+            );
+
+
+        activity.className =
+            "activity";
+
+
+        activity.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${title}
+                </strong>
+
+                <p>
+                    Created by ${organizer}
+                    ${date !== "—"
+                        ? ` • Event date: ${date}`
+                        : ""
+                    }
+                </p>
+
+            </div>
+
+            <span class="badge ${getStatusClass(status)}">
+                ${escapeHTML(status)}
+            </span>
+
+        `;
+
+
+        container.appendChild(
+            activity
+        );
+
+    });
+
+}
+
+
+
+
+
+function renderRecentActivitiesError() {
+
+    const container =
+        document.getElementById(
+            "recentActivities"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <div class="activity">
+
+            <div>
+
+                <strong>
+                    Unable to load activities
+                </strong>
+
+                <p>
+                    Please check the backend server.
+                </p>
+
+            </div>
+
+            <span class="badge pending">
+                Error
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+
+
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+        return "—";
+    }
+
+
+    const date =
+        new Date(dateString);
+
+
+    if (Number.isNaN(date.getTime())) {
+        return "—";
+    }
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+
+
+
+function normalizeStatus(status) {
+
+    if (!status) {
+        return "Pending";
+    }
+
+
+    return (
+        status.charAt(0).toUpperCase() +
+        status.slice(1).toLowerCase()
+    );
+
+}
+
+
+
+
+
+function getStatusClass(status) {
+
+    switch (
+        normalizeStatus(status)
+    ) {
+
+        case "Approved":
+            return "approved";
+
+
+        case "Pending":
+            return "pending";
+
+
+        case "Rejected":
+            return "rejected";
+
+
+        case "Cancelled":
+            return "cancelled";
+
+
+        default:
+            return "pending";
+
+    }
+
+}
+
+
+
+
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

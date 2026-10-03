@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Event Management | CampusVenue</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+<link rel="stylesheet" href="../css/admin-events.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page">
+
+<header class="topbar">
+
+<div class="container">
+
+    <nav class="navbar">
+
+        <a href="../index.html" class="logo">
+            Campus<span>Venue</span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="users.html">
+                Users
+            </a>
+
+            <a href="venues.html">
+                Venues
+            </a>
+
+            <a href="events.html" class="active">
+                Events
+            </a>
+
+            <a href="approvals.html">
+                Approvals
+            </a>
+
+            <a href="reports.html">
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button
+                onclick="logout()"
+                class="btn btn-outline"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+</div>
+</header>
+
+<main class="container section">
+
+<div class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            ADMIN PANEL
+        </span>
+
+        <h1>
+            Event Management
+        </h1>
+
+        <p>
+            Monitor and manage all college events.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="box">
+
+
+    <div class="toolbar">
+
+
+        <div class="filter-group">
+
+            <label for="search">
+                Search Event
+            </label>
+
+            <input
+                id="search"
+                type="text"
+                placeholder="Search event..."
+            >
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <label for="category">
+                Category
+            </label>
+
+            <select id="category">
+
+                <option value="">
+                    All Categories
+                </option>
+
+                <option value="Technical">
+                    Technical
+                </option>
+
+                <option value="Cultural">
+                    Cultural
+                </option>
+
+                <option value="Sports">
+                    Sports
+                </option>
+
+                <option value="Workshop">
+                    Workshop
+                </option>
+
+                <option value="Seminar">
+                    Seminar
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <label for="status">
+                Status
+            </label>
+
+            <select id="status">
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="Approved">
+                    Approved
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Rejected">
+                    Rejected
+                </option>
+
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div
+        id="eventsLoading"
+        class="no-events"
+    >
+        Loading events...
+    </div>
+
+
+
+
+
+    <div
+        id="eventsError"
+        class="no-events"
+        style="display: none;"
+    >
+        Unable to load events.
+    </div>
+
+
+
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Event
+                    </th>
+
+                    <th>
+                        Category
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Venue
+                    </th>
+
+                    <th>
+                        Organizer
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="eventTable">
+
+
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+
+
+    <div
+        id="noEvents"
+        class="no-events"
+        style="display: none;"
+    >
+        No events found.
+    </div>
+
+
+</div>
+</main>
+
+
+
+
+<script src="../js/auth.js"></script>
+
+
+
+
+<script src="../js/admin-events.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        protectPage("admin");
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

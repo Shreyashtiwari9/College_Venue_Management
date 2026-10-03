@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event Schedule | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/schedule.css">
+    <link rel="stylesheet" href="../css/organizer-dashboard.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page organizer-schedule-body">
+
+<header class="topbar organizer-topbar">
+    <div class="container">
+        <nav class="navbar">
+
+            <button
+                type="button"
+                class="organizer-menu-toggle"
+                id="organizerMenuToggle"
+                aria-controls="organizerNavLinks"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+            <div class="nav-links" id="organizerNavLinks">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="create-event.html">Create Event</a>
+                <a href="my-events.html">My Events</a>
+                <a href="venue-request.html">Venue Request</a>
+                <a href="schedule.html" class="active">Schedule</a>
+                <a href="volunteers.html">Volunteers</a>
+                <a href="equipment.html">Equipment</a>
+                <a href="attendance.html">Attendance</a>
+                <a href="notifications.html" class="notification-link">
+                    <span aria-hidden="true">&#128276;</span>
+                    <span id="notificationCount" class="notification-badge">0</span>
+                </a>
+            </div>
+
+            <button class="btn btn-outline" onclick="logout()">
+                Logout
+            </button>
+
+        </nav>
+    </div>
+</header>
+
+<main class="container section organizer-schedule-page">
+
+    <div class="page-header">
+        <h1>Event Schedule</h1>
+        <p>
+            View your upcoming event schedule and venue timings.
+        </p>
+    </div>
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search event..."
+            oninput="filterSchedule()"
+        >
+
+        <select
+            id="venueFilter"
+            onchange="filterSchedule()"
+        >
+            <option value="">All Venues</option>
+        </select>
+
+    </div>
+
+    <div id="schedule" class="schedule">
+        <div class="schedule-loading">
+            Loading your event schedule...
+        </div>
+    </div>
+
+</main>
+
+<script src="../js/auth.js"></script>
+<script src="../js/organizer-menu.js"></script>
+<script src="../js/schedule.js"></script>
+<script src="../js/organizer-notification.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("organizer");
+});
+</script>
+
+</body>
+</html>

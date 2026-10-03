@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | CampusVenue</title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet"
+        href="../css/style.css">
+
+    <link rel="stylesheet"
+        href="../css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="../css/student-dashboard.css">
+        <link rel="stylesheet" href="../css/glass-3d.css">
+
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-brand">
+
+        <div class="brand-icon">
+            <i class="bi bi-buildings"></i>
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                Campus<span>Venue</span>
+            </strong>
+
+            <small>
+                Event Management
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="sidebar-profile">
+
+        <div class="profile-avatar" id="sidebarAvatar">
+            ST
+        </div>
+
+        <div class="profile-info">
+
+            <strong id="sidebarUserName">
+                Student
+            </strong>
+
+            <span>
+                Student
+            </span>
+
+        </div>
+
+        <button
+            class="profile-menu"
+            id="profileMenuBtn"
+            type="button"
+            title="Profile">
+
+            <i class="bi bi-three-dots"></i>
+
+        </button>
+
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <div class="nav-section">
+
+            <span class="nav-title">
+                MAIN MENU
+            </span>
+
+            <a
+                href="./dashboard.html"
+                class="sidebar-link active"
+                data-page="dashboard">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+            <a
+                href="./event.html"
+                class="sidebar-link"
+                data-page="events">
+
+                <i class="bi bi-calendar-event"></i>
+
+                <span>
+                    College Events
+                </span>
+
+            </a>
+
+            <a
+                href="./my-events.html"
+                class="sidebar-link"
+                data-page="my-events">
+
+                <i class="bi bi-calendar-check"></i>
+
+                <span>
+                    My Events
+                </span>
+
+            </a>
+
+            <a
+                href="./venues.html"
+                class="sidebar-link"
+                data-page="venues">
+
+                <i class="bi bi-buildings"></i>
+
+                <span>
+                    Venues
+                </span>
+
+            </a>
+
+        </div>
+
+        <div class="nav-section">
+
+            <span class="nav-title">
+                MY CAMPUS
+            </span>
+
+            <a
+                href="./notifications.html"
+                class="sidebar-link"
+                data-page="notifications">
+
+                <i class="bi bi-bell"></i>
+
+                <span>
+                    Notifications
+                </span>
+
+                <span
+                    class="notification-dot"
+                    id="notificationDot">
+                </span>
+
+            </a>
+
+            <a
+                href="./profile.html"
+                class="sidebar-link"
+                data-page="profile">
+
+                <i class="bi bi-person"></i>
+
+                <span>
+                    My Profile
+                </span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+        <div class="help-card">
+
+            <div class="help-icon">
+                <i class="bi bi-headset"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    Need Help?
+                </strong>
+
+                <span>
+                    Contact administrator
+                </span>
+
+            </div>
+
+        </div>
+
+        <button
+            class="logout-btn"
+            id="logoutBtn"
+            type="button">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+<main class="dashboard-main">
+
+    <header class="dashboard-topbar">
+
+        <div class="topbar-left">
+
+            <button
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                type="button">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+            <div class="breadcrumb">
+
+                <span>
+                    CampusVenue
+                </span>
+
+                <i class="bi bi-chevron-right"></i>
+
+                <strong>
+                    Student Dashboard
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="topbar-actions">
+
+            <div class="dashboard-search">
+
+                <i class="bi bi-search"></i>
+
+                <input
+                    type="text"
+                    id="dashboardSearch"
+                    placeholder="Search events, venues...">
+
+                <span class="search-shortcut">
+                    /
+                </span>
+
+            </div>
+
+            <button
+                class="topbar-icon-btn"
+                id="themeToggle"
+                type="button"
+                title="Toggle theme">
+
+                <i class="bi bi-moon"></i>
+
+            </button>
+
+            <button
+                class="topbar-icon-btn notification-btn"
+                id="notificationBtn"
+                type="button"
+                title="Notifications">
+
+                <i class="bi bi-bell"></i>
+
+                <span id="notificationBadge"></span>
+
+            </button>
+
+            <button
+                class="topbar-user"
+                id="profileBtn"
+                type="button">
+
+                <div
+                    class="topbar-avatar"
+                    id="topbarAvatar">
+
+                    ST
+
+                </div>
+
+                <div class="topbar-user-info">
+
+                    <strong id="topbarUserName">
+                        Student
+                    </strong>
+
+                    <span>
+                        Student
+                    </span>
+
+                </div>
+
+                <i class="bi bi-chevron-down"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="dashboard-content">
+
+        <section class="dashboard-heading">
+
+            <div>
+
+                <span
+                    class="dashboard-greeting"
+                    id="dashboardGreeting">
+
+                    GOOD EVENING 👋
+
+                </span>
+
+                <h1>
+
+                    Welcome back,
+
+                    <span id="welcomeName">
+                        Student
+                    </span>
+
+                </h1>
+
+                <p>
+                    Discover college events, manage your registrations and keep track of your campus activities.
+                </p>
+
+            </div>
+
+            <div class="heading-actions">
+
+                <button
+                    class="primary-btn"
+                    id="browseEventsBtn"
+                    type="button">
+
+                    <i class="bi bi-calendar-event"></i>
+
+                    Browse Events
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon purple">
+
+                        <i class="bi bi-calendar-check"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="registeredEventsCount">
+
+                    --
+
+                </div>
+
+                <div class="stat-label">
+                    Registered Events
+                </div>
+
+                <div class="stat-footer">
+                    Events you have joined
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon blue">
+
+                        <i class="bi bi-calendar-event"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="upcomingEventsCount">
+
+                    --
+
+                </div>
+
+                <div class="stat-label">
+                    Upcoming Events
+                </div>
+
+                <div class="stat-footer">
+                    Your upcoming campus activities
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon orange">
+
+                        <i class="bi bi-calendar2-check"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="completedEventsCount">
+
+                    --
+
+                </div>
+
+                <div class="stat-label">
+                    Completed Events
+                </div>
+
+                <div class="stat-footer">
+                    Events already completed
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon green">
+
+                        <i class="bi bi-person-check"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="attendanceCount">
+
+                    --
+
+                </div>
+
+                <div class="stat-label">
+                    Attendance
+                </div>
+
+                <div class="stat-footer">
+                    Attendance records marked
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="dashboard-grid">
+
+            <div class="dashboard-card events-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-kicker">
+                            YOUR SCHEDULE
+                        </span>
+
+                        <h3>
+                            Upcoming Events
+                        </h3>
+
+                    </div>
+
+                    <button
+                        class="view-all-btn"
+                        id="viewAllEvents"
+                        type="button">
+
+                        View All
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+                <div
+                    class="event-list"
+                    id="studentUpcomingEvents">
+
+                    <div class="dashboard-event">
+
+                        <div class="event-details">
+
+                            <h4>
+                                Loading your events...
+                            </h4>
+
+                            <p>
+                                <i class="bi bi-hourglass-split"></i>
+                                Please wait
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card availability-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-kicker">
+                            CAMPUS
+                        </span>
+
+                        <h3>
+                            Venue Availability
+                        </h3>
+
+                    </div>
+
+                    <button
+                        class="icon-card-btn"
+                        id="viewVenuesBtn"
+                        type="button">
+
+                        <i class="bi bi-arrow-up-right"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="availability-summary">
+
+                    <div class="availability-circle">
+
+                        <div>
+
+                            <strong id="availableCircleCount">
+                                --
+                            </strong>
+
+                            <span>
+                                Available
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="availability-info">
+
+                        <div>
+
+                            <span
+                                class="availability-dot available">
+                            </span>
+
+                            Available
+
+                            <strong id="availableCount">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span
+                                class="availability-dot occupied">
+                            </span>
+
+                            Occupied
+
+                            <strong id="occupiedCount">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span
+                                class="availability-dot maintenance">
+                            </span>
+
+                            Maintenance
+
+                            <strong id="maintenanceCount">
+                                --
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="venue-mini-list"
+                    id="venueMiniList">
+
+                    <div class="venue-mini">
+
+                        <div>
+
+                            <strong>
+                                Loading venues...
+                            </strong>
+
+                            <span>
+                                Fetching venue information
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card requests-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-kicker">
+                            RECENT ACTIVITY
+                        </span>
+
+                        <h3>
+                            My Recent Events
+                        </h3>
+
+                    </div>
+
+                    <button
+                        class="view-all-btn"
+                        id="viewAllMyEvents"
+                        type="button">
+
+                        View All
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="request-table-wrapper">
+
+                    <table class="request-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Event
+                                </th>
+
+                                <th>
+                                    Venue
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="recentEventsBody">
+
+                            <tr>
+
+                                <td colspan="4">
+                                    Loading recent events...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card quick-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-kicker">
+                            QUICK ACCESS
+                        </span>
+
+                        <h3>
+                            Quick Actions
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="quick-actions">
+
+                    <button
+                        class="quick-action"
+                        id="quickEvents"
+                        type="button">
+
+                        <div class="quick-icon purple">
+
+                            <i class="bi bi-calendar-event"></i>
+
+                        </div>
+
+                        <span>
+                            Browse Events
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="quick-action"
+                        id="quickMyEvents"
+                        type="button">
+
+                        <div class="quick-icon blue">
+
+                            <i class="bi bi-calendar-check"></i>
+
+                        </div>
+
+                        <span>
+                            My Events
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="quick-action"
+                        id="quickVenues"
+                        type="button">
+
+                        <div class="quick-icon green">
+
+                            <i class="bi bi-buildings"></i>
+
+                        </div>
+
+                        <span>
+                            View Venues
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="quick-action"
+                        id="quickNotifications"
+                        type="button">
+
+                        <div class="quick-icon orange">
+
+                            <i class="bi bi-bell"></i>
+
+                        </div>
+
+                        <span>
+                            Notifications
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="insight-banner">
+
+            <div class="insight-icon">
+
+                <i class="bi bi-lightbulb"></i>
+
+            </div>
+
+            <div class="insight-content">
+
+                <span>
+                    CAMPUS UPDATE
+                </span>
+
+                <h3 id="studentInsightTitle">
+                    Loading campus information...
+                </h3>
+
+                <p>
+                    Explore approved events and register for activities happening on campus.
+                </p>
+
+            </div>
+
+            <button
+                class="insight-btn"
+                id="checkEventsBtn"
+                type="button">
+
+                Explore Events
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+        </section>
+
+    </div>
+
+</main>
+
+<div class="toast" id="toast">
+
+    <div class="toast-icon">
+        <i class="bi bi-check-lg"></i>
+    </div>
+
+    <div>
+
+        <strong id="toastTitle">
+            Success
+        </strong>
+
+        <span id="toastMessage">
+            Action completed successfully.
+        </span>
+
+    </div>
+
+    <button
+        id="closeToast"
+        type="button">
+
+        <i class="bi bi-x"></i>
+
+    </button>
+
+</div>
+
+<script src="../js/dashboard.js"></script>
+
+<script src="../js/auth.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    protectPage("student");
+
+    loadStudentProfile();
+
+    setupStudentDashboardActions();
+
+    loadStudentDashboardData();
+
+});
+
+function navigateTo(page) {
+
+    window.location.href = "./" + page;
+
+}
+
+function setupStudentDashboardActions() {
+
+    const navigation = {
+
+                        browseEventsBtn: "event.html",
+
+                        viewAllEvents: "event.html",
+
+        viewAllMyEvents: "my-events.html",
+
+        viewVenuesBtn: "venues.html",
+
+                        checkEventsBtn: "event.html",
+
+                        quickEvents: "event.html",
+
+        quickMyEvents: "my-events.html",
+
+        quickVenues: "venues.html",
+
+        quickNotifications: "notifications.html",
+
+        notificationBtn: "notifications.html",
+
+        profileBtn: "profile.html",
+
+        profileMenuBtn: "profile.html"
+
+    };
+
+    Object.keys(navigation).forEach(function (id) {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element) {
+            return;
+        }
+
+        element.addEventListener(
+            "click",
+            function () {
+
+                navigateTo(
+                    navigation[id]
+                );
+
+            }
+        );
+
+    });
+
+}
+
+function loadStudentProfile() {
+
+    try {
+
+        const userData =
+            localStorage.getItem(
+                "campusVenueUser"
+            );
+
+        if (!userData) {
+            return;
+        }
+
+        const user =
+            JSON.parse(userData);
+
+        const name =
+            user.name || "Student";
+
+        const initials =
+            getInitials(name);
+
+        const sidebarUserName =
+            document.getElementById(
+                "sidebarUserName"
+            );
+
+        const topbarUserName =
+            document.getElementById(
+                "topbarUserName"
+            );
+
+        const welcomeName =
+            document.getElementById(
+                "welcomeName"
+            );
+
+        const sidebarAvatar =
+            document.getElementById(
+                "sidebarAvatar"
+            );
+
+        const topbarAvatar =
+            document.getElementById(
+                "topbarAvatar"
+            );
+
+        if (sidebarUserName) {
+            sidebarUserName.textContent = name;
+        }
+
+        if (topbarUserName) {
+            topbarUserName.textContent = name;
+        }
+
+        if (welcomeName) {
+            welcomeName.textContent =
+                name.split(" ")[0];
+        }
+
+        if (sidebarAvatar) {
+            sidebarAvatar.textContent = initials;
+        }
+
+        if (topbarAvatar) {
+            topbarAvatar.textContent = initials;
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Student Profile Error:",
+            error
+        );
+
+    }
+
+}
+
+async function loadStudentDashboardData() {
+
+    const token =
+        localStorage.getItem(
+            "campusVenueToken"
+        );
+
+    if (!token) {
+        return;
+    }
+
+    await Promise.all([
+        loadStudentRegistrations(token),
+        loadStudentVenues(),
+        loadStudentNotifications(token)
+    ]);
+
+}
+
+async function loadStudentRegistrations(token) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/registrations/my-events",
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`,
+                        "Content-Type":
+                            "application/json"
+                    }
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+            throw new Error(result.message || "Unable to load registrations.");
+        }
+
+        const registrations =
+            Array.isArray(
+                result.registrations
+            )
+                ? result.registrations
+                : [];
+
+        let attendanceData = {
+            events: []
+        };
+
+        try {
+
+            const attendanceResponse =
+                await fetch(
+                    "/api/attendance/my",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Authorization":
+                                `Bearer ${token}`,
+                            "Content-Type":
+                                "application/json"
+                        }
+                    }
+                );
+
+            const attendanceResult =
+                await attendanceResponse.json();
+
+            if (
+                attendanceResponse.ok &&
+                attendanceResult.success
+            ) {
+                attendanceData =
+                    attendanceResult;
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Attendance Error:",
+                error
+            );
+
+        }
+
+        const attendanceEvents =
+            Array.isArray(
+                attendanceData.events
+            )
+                ? attendanceData.events
+                : [];
+
+        const attendanceMap =
+            new Map();
+
+        attendanceEvents.forEach(
+            function (item) {
+
+                attendanceMap.set(
+                    String(item.eventId),
+                    item.attendanceStatus ||
+                    "not-marked"
+                );
+
+            }
+        );
+
+        registrations.forEach(
+            function (registration) {
+
+                if (!registration.event) {
+                    return;
+                }
+
+                registration.attendanceStatus =
+                    attendanceMap.get(
+                        String(
+                            registration.event._id
+                        )
+                    ) ||
+                    "not-marked";
+
+            }
+        );
+
+        updateStudentDashboardStats(
+            registrations
+        );
+
+        renderUpcomingEvents(
+            registrations
+        );
+
+        renderRecentEvents(
+            registrations
+        );
+
+        updateStudentInsight(
+            registrations
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Student Registration Error:",
+            error
+        );
+
+        [
+            "registeredEventsCount",
+            "upcomingEventsCount",
+            "completedEventsCount",
+            "attendanceCount"
+        ].forEach(id => setText(id, "Unavailable"));
+
+        const upcomingContainer = document.getElementById("studentUpcomingEvents");
+
+        if (upcomingContainer) {
+            upcomingContainer.textContent = "Unable to load your events.";
+        }
+
+    }
+
+}
+
+function updateStudentDashboardStats(
+    registrations
+) {
+
+    let registered = 0;
+    let upcoming = 0;
+    let completed = 0;
+    let attendance = 0;
+
+    const today = new Date();
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+    registrations.forEach(
+        function (registration) {
+
+            if (
+                registration.status ===
+                "cancelled"
+            ) {
+                return;
+            }
+
+            registered++;
+
+            const event =
+                registration.event;
+
+            if (!event) {
+                return;
+            }
+
+            const eventDate =
+                new Date(
+                    event.eventDate
+                );
+
+            if (
+                !isNaN(
+                    eventDate.getTime()
+                )
+            ) {
+
+                eventDate.setHours(
+                    0,
+                    0,
+                    0,
+                    0
+                );
+
+                if (
+                    eventDate >= today
+                ) {
+                    upcoming++;
+                } else {
+                    completed++;
+                }
+
+            }
+
+            if (
+                registration.attendanceStatus ===
+                    "present" ||
+                registration.attendanceStatus ===
+                    "absent"
+            ) {
+                attendance++;
+            }
+
+        }
+    );
+
+    setText(
+        "registeredEventsCount",
+        registered
+    );
+
+    setText(
+        "upcomingEventsCount",
+        upcoming
+    );
+
+    setText(
+        "completedEventsCount",
+        completed
+    );
+
+    setText(
+        "attendanceCount",
+        attendance
+    );
+
+}
+
+function renderUpcomingEvents(
+    registrations
+) {
+
+    const container =
+        document.getElementById(
+            "studentUpcomingEvents"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const today = new Date();
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+    const upcoming =
+        registrations
+            .filter(
+                function (registration) {
+
+                    if (
+                        registration.status ===
+                        "cancelled"
+                    ) {
+                        return false;
+                    }
+
+                    if (!registration.event) {
+                        return false;
+                    }
+
+                    const date =
+                        new Date(
+                            registration.event.eventDate
+                        );
+
+                    date.setHours(
+                        0,
+                        0,
+                        0,
+                        0
+                    );
+
+                    return date >= today;
+
+                }
+            )
+            .sort(
+                function (a, b) {
+
+                    return (
+                        new Date(
+                            a.event.eventDate
+                        ) -
+                        new Date(
+                            b.event.eventDate
+                        )
+                    );
+
+                }
+            )
+            .slice(0, 4);
+
+    if (upcoming.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="dashboard-event empty-event">
+
+                <div class="event-details">
+
+                    <h4>
+                        No upcoming events
+                    </h4>
+
+                    <p>
+                        <i class="bi bi-calendar-event"></i>
+                        Browse college events to register.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        upcoming.map(
+            function (registration) {
+
+                const event =
+                    registration.event;
+
+                const date =
+                    new Date(
+                        event.eventDate
+                    );
+
+                const venue =
+                    event.venue || {};
+
+                const attendance =
+                    registration.attendanceStatus ||
+                    "not-marked";
+
+                const attendanceText =
+                    attendance === "present"
+                        ? "Present"
+                        : attendance === "absent"
+                            ? "Absent"
+                            : "Not Marked";
+
+                const statusClass =
+                    attendance === "present"
+                        ? "approved"
+                        : attendance === "absent"
+                            ? "rejected"
+                            : "pending";
+
+                return `
+
+                    <div class="dashboard-event">
+
+                        <div class="event-date">
+
+                            <strong>
+                                ${date.getDate()}
+                            </strong>
+
+                            <span>
+                                ${date.toLocaleDateString(
+                                    "en-IN",
+                                    {
+                                        month: "short"
+                                    }
+                                ).toUpperCase()}
+                            </span>
+
+                        </div>
+
+                        <div class="event-details">
+
+                            <div class="event-title-row">
+
+                                <h4>
+                                    ${escapeHTML(
+                                        event.title ||
+                                        "Untitled Event"
+                                    )}
+                                </h4>
+
+                                <span class="status-badge ${statusClass}">
+                                    ${attendanceText}
+                                </span>
+
+                            </div>
+
+                            <p>
+
+                                <i class="bi bi-clock"></i>
+
+                                ${escapeHTML(
+                                    formatTime(
+                                        event.startTime
+                                    )
+                                )}
+
+                                -
+
+                                ${escapeHTML(
+                                    formatTime(
+                                        event.endTime
+                                    )
+                                )}
+
+                            </p>
+
+                            <p>
+
+                                <i class="bi bi-geo-alt"></i>
+
+                                ${escapeHTML(
+                                    venue.name ||
+                                    "Venue not assigned"
+                                )}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+function renderRecentEvents(
+    registrations
+) {
+
+    const body =
+        document.getElementById(
+            "recentEventsBody"
+        );
+
+    if (!body) {
+        return;
+    }
+
+    const recent =
+        registrations
+            .filter(
+                function (registration) {
+                    return !!registration.event;
+                }
+            )
+            .slice(0, 5);
+
+    if (recent.length === 0) {
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td colspan="4">
+                    No registered events yet.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+    body.innerHTML =
+        recent.map(
+            function (registration) {
+
+                const event =
+                    registration.event;
+
+                const venue =
+                    event.venue || {};
+
+                let status = "Registered";
+                let statusClass = "pending";
+
+                if (
+                    registration.status ===
+                    "cancelled"
+                ) {
+
+                    status = "Cancelled";
+                    statusClass = "rejected";
+
+                } else if (
+                    registration.attendanceStatus ===
+                    "present"
+                ) {
+
+                    status = "Present";
+                    statusClass = "approved";
+
+                } else if (
+                    registration.attendanceStatus ===
+                    "absent"
+                ) {
+
+                    status = "Absent";
+                    statusClass = "rejected";
+
+                }
+
+                return `
+
+                    <tr>
+
+                        <td>
+
+                            <div class="table-event">
+
+                                <div class="table-event-icon purple-bg">
+
+                                    <i class="bi bi-calendar-event"></i>
+
+                                </div>
+
+                                <span>
+                                    ${escapeHTML(
+                                        event.title ||
+                                        "Untitled Event"
+                                    )}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                venue.name ||
+                                "Not assigned"
+                            )}
+                        </td>
+
+                        <td>
+                            ${formatDate(
+                                event.eventDate
+                            )}
+                        </td>
+
+                        <td>
+
+                            <span class="status-badge ${statusClass}">
+                                ${status}
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+async function loadStudentVenues() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/venues"
+            );
+
+        const result =
+            await response.json();
+
+        const venues =
+            result.venues ||
+            result.data ||
+            result;
+
+        if (!response.ok || !result.success) {
+            throw new Error(result.message || "Unable to load venues.");
+        }
+
+        if (!Array.isArray(venues)) {
+            return;
+        }
+
+        const available =
+            venues.filter(
+                function (venue) {
+                    return (venue.availability || venue.status) === "available";
+                }
+            );
+
+        const occupied =
+            venues.filter(
+                function (venue) {
+                    return ["booked", "occupied", "pending"].includes(
+                        venue.availability || venue.status
+                    );
+                }
+            );
+
+        const maintenance =
+            venues.filter(
+                function (venue) {
+                    return ["maintenance", "unavailable"].includes(
+                        venue.availability || venue.status
+                    );
+                }
+            );
+
+        setText(
+            "availableCircleCount",
+            available.length
+        );
+
+        setText(
+            "availableCount",
+            available.length
+        );
+
+        setText(
+            "occupiedCount",
+            occupied.length
+        );
+
+        setText(
+            "maintenanceCount",
+            maintenance.length
+        );
+
+        renderVenueMiniList(
+            venues.slice(0, 3)
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Venue API Error:",
+            error
+        );
+
+        [
+            "availableCircleCount",
+            "availableCount",
+            "occupiedCount",
+            "maintenanceCount"
+        ].forEach(id => setText(id, "Unavailable"));
+
+    }
+
+}
+
+function renderVenueMiniList(
+    venues
+) {
+
+    const container =
+        document.getElementById(
+            "venueMiniList"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    if (
+        !venues ||
+        venues.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="venue-mini">
+
+                <div>
+
+                    <strong>
+                        No venues available
+                    </strong>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        venues.map(
+            function (venue) {
+
+                const status =
+                    venue.status ||
+                    "available";
+
+                const statusText =
+                    status.charAt(0).toUpperCase() +
+                    status.slice(1);
+
+                return `
+
+                    <div class="venue-mini-item">
+
+                        <div class="venue-icon">
+
+                            <i class="bi bi-building"></i>
+
+                        </div>
+
+                        <div class="venue-mini-info">
+
+                            <h4>
+                                ${escapeHTML(
+                                    venue.name ||
+                                    "Unnamed Venue"
+                                )}
+                            </h4>
+
+                            <p>
+                                ${escapeHTML(
+                                    venue.location ||
+                                    "Location unavailable"
+                                )}
+                            </p>
+
+                        </div>
+
+                        <span class="venue-status ${status}">
+                            ${statusText}
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+async function loadStudentNotifications(
+    token
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/notifications",
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`,
+                        "Content-Type":
+                            "application/json"
+                    }
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+            return;
+        }
+
+        const notifications =
+            Array.isArray(
+                result.notifications
+            )
+                ? result.notifications
+                : [];
+
+        const unread =
+            notifications.filter(
+                function (item) {
+                    return !item.isRead;
+                }
+            ).length;
+
+        const badge =
+            document.getElementById(
+                "notificationBadge"
+            );
+
+        const dot =
+            document.getElementById(
+                "notificationDot"
+            );
+
+        if (badge) {
+
+            badge.textContent =
+                unread > 0
+                    ? unread
+                    : "";
+
+        }
+
+        if (dot) {
+
+            dot.style.display =
+                unread > 0
+                    ? "block"
+                    : "none";
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Notification API Error:",
+            error
+        );
+
+    }
+
+}
+
+function updateStudentInsight(
+    registrations
+) {
+
+    const element =
+        document.getElementById(
+            "studentInsightTitle"
+        );
+
+    if (!element) {
+        return;
+    }
+
+    const upcoming =
+        registrations.filter(
+            function (registration) {
+
+                if (
+                    registration.status ===
+                    "cancelled"
+                ) {
+                    return false;
+                }
+
+                if (!registration.event) {
+                    return false;
+                }
+
+                return (
+                    new Date(
+                        registration.event.eventDate
+                    ) >= new Date()
+                );
+
+            }
+        ).length;
+
+    if (upcoming > 0) {
+
+        element.textContent =
+            `You have ${upcoming} upcoming event${upcoming === 1 ? "" : "s"} in your schedule`;
+
+    } else {
+
+        element.textContent =
+            "Explore the latest college events";
+
+    }
+
+}
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(id);
+
+    if (element) {
+        element.textContent = value;
+    }
+
+}
+
+function formatDate(
+    value
+) {
+
+    if (!value) {
+        return "--";
+    }
+
+    const date =
+        new Date(value);
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+        return "--";
+    }
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+function formatTime(
+    value
+) {
+
+    if (!value) {
+        return "--";
+    }
+
+    const parts =
+        String(value).split(":");
+
+    if (parts.length < 2) {
+        return value;
+    }
+
+    let hour =
+        parseInt(
+            parts[0],
+            10
+        );
+
+    const minute =
+        parts[1];
+
+    if (isNaN(hour)) {
+        return value;
+    }
+
+    const period =
+        hour >= 12
+            ? "PM"
+            : "AM";
+
+    hour =
+        hour % 12 || 12;
+
+    return `${hour}:${minute} ${period}`;
+
+}
+
+function getInitials(
+    name
+) {
+
+    const words =
+        String(name)
+            .trim()
+            .split(/\s+/);
+
+    if (!words.length) {
+        return "ST";
+    }
+
+    if (words.length === 1) {
+
+        return words[0]
+            .substring(0, 2)
+            .toUpperCase();
+
+    }
+
+    return (
+        words[0].charAt(0) +
+        words[words.length - 1].charAt(0)
+    ).toUpperCase();
+
+}
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+</body>
+
+</html>

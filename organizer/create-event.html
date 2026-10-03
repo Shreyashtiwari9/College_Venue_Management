@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Event | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/create-event.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page">
+
+<header class="topbar">
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="create-event.html" class="active">
+                    Create Event
+                </a>
+
+                <a href="my-events.html">
+                    My Events
+                </a>
+
+                <a href="venue-request.html">
+                    Venue Request
+                </a>
+
+                <a href="schedule.html">
+                    Schedule
+                </a>
+
+                <a href="volunteers.html">
+                    Volunteers
+                </a>
+
+                <a href="equipment.html">
+                    Equipment
+                </a>
+
+                <a href="attendance.html">
+                    Attendance
+                </a>
+
+            </div>
+
+            <button
+                class="btn btn-outline"
+                onclick="logout()">
+                Logout
+            </button>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container section">
+
+    <div class="page-header">
+
+        <h1>
+            Create New Event
+        </h1>
+
+        <p>
+            Submit complete event information for admin approval.
+        </p>
+
+    </div>
+
+
+    <div class="form-box">
+
+
+
+
+        <div
+            id="message"
+            class="message"
+            style="display: none;">
+        </div>
+
+
+
+
+
+        <form id="eventForm">
+
+            <div class="form-grid">
+
+
+
+
+
+                <div class="group full">
+
+                    <label for="eventName">
+                        Event Name *
+                    </label>
+
+                    <input
+                        id="eventName"
+                        type="text"
+                        placeholder="Enter event name"
+                        required
+                        maxlength="150">
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="category">
+                        Category *
+                    </label>
+
+                    <select
+                        id="category"
+                        required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Technical">
+                            Technical
+                        </option>
+
+                        <option value="Cultural">
+                            Cultural
+                        </option>
+
+                        <option value="Sports">
+                            Sports
+                        </option>
+
+                        <option value="Workshop">
+                            Workshop
+                        </option>
+
+                        <option value="Seminar">
+                            Seminar
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="participants">
+                        Expected Participants *
+                    </label>
+
+                    <input
+                        id="participants"
+                        type="number"
+                        min="1"
+                        placeholder="e.g. 200"
+                        required>
+
+                    <small id="capacityInfo"></small>
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="date">
+                        Event Date *
+                    </label>
+
+                    <input
+                        id="date"
+                        type="date"
+                        required>
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="startTime">
+                        Start Time *
+                    </label>
+
+                    <input
+                        id="startTime"
+                        type="time"
+                        required>
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="endTime">
+                        End Time *
+                    </label>
+
+                    <input
+                        id="endTime"
+                        type="time"
+                        required>
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="venue">
+                        Venue *
+                    </label>
+
+                    <select
+                        id="venue"
+                        required>
+
+                        <option value="">
+                            Loading venues...
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Only available venues are shown.
+                    </small>
+
+                </div>
+
+
+
+
+
+                <div class="group">
+
+                    <label for="organizer">
+                        Organizer
+                    </label>
+
+                    <input
+                        id="organizer"
+                        type="text"
+                        placeholder="Logged-in organizer"
+                        readonly>
+
+                </div>
+
+
+
+
+
+                <div class="group full">
+
+                    <label for="description">
+                        Event Description *
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Describe your event..."
+                        required
+                        maxlength="2000"></textarea>
+
+                </div>
+
+
+
+
+
+                <div class="group full">
+
+                    <label for="requirements">
+                        Special Requirements
+                    </label>
+
+                    <textarea
+                        id="requirements"
+                        placeholder="Projector, microphones, computers, chairs, etc."
+                        maxlength="1000"></textarea>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="actions">
+
+                <a
+                    href="dashboard.html"
+                    class="btn btn-outline">
+
+                    Cancel
+
+                </a>
+
+                <button
+                    id="submitButton"
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Submit Event
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+<script src="../js/create-event.js"></script>
+
+<script src="../js/auth.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        protectPage("organizer");
+
+    }
+);
+
+</script>
+
+</body>
+</html>

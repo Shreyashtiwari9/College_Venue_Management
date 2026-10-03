@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Approvals | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-appovals.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page">
+
+<header class="topbar">
+    <div class="container">
+
+        <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="users.html">Users</a>
+                <a href="venues.html">Venues</a>
+                <a href="events.html">Events</a>
+                <a href="approvals.html" class="active">Approvals</a>
+                <a href="reports.html">Reports</a>
+            </div>
+
+            <button onclick="logout()" class="btn btn-outline">
+                Logout
+            </button>
+
+        </nav>
+
+    </div>
+</header>
+
+
+<main class="container section">
+
+    <div class="page-header">
+        <h1>Approval Requests</h1>
+        <p>Review event requests submitted by organizers.</p>
+    </div>
+
+
+    <div id="successMessage" class="success-message"></div>
+
+    <div id="errorMessage" class="error-message"></div>
+
+
+
+
+    <div id="loadingBox" class="loading-box">
+        <h2>Loading Requests...</h2>
+        <p>Please wait while pending events are being loaded.</p>
+    </div>
+
+
+
+
+    <div
+        class="approval-grid"
+        id="approvalGrid"
+        style="display: none;">
+    </div>
+
+
+
+
+    <div
+        id="emptyBox"
+        class="empty-box"
+        style="display: none;">
+
+        <h2>No Pending Requests</h2>
+
+        <p>
+            There are currently no events waiting for admin approval.
+        </p>
+
+    </div>
+
+</main>
+
+
+<script src="../js/auth.js"></script>
+
+<script src="../js/admin-approvals.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    protectPage("admin");
+
+});
+</script>
+
+</body>
+</html>

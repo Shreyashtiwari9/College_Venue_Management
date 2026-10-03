@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Venue Request | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/organizer-venue-request.css">
+    <link rel="stylesheet" href="../css/organizer-dashboard.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body class="role-page">
+
+    <header class="topbar organizer-topbar">
+        <div class="container">
+            <nav class="navbar">
+
+                <button
+                    type="button"
+                    class="organizer-menu-toggle"
+                    id="organizerMenuToggle"
+                    aria-controls="organizerNavLinks"
+                    aria-expanded="false"
+                    aria-label="Open navigation menu">
+                    <span aria-hidden="true">&#9776;</span>
+                </button>
+
+                <a href="../index.html" class="logo">
+                    Campus<span>Venue</span>
+                </a>
+
+                <div class="nav-links" id="organizerNavLinks">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="create-event.html">Create Event</a>
+                    <a href="my-events.html">My Events</a>
+                    <a href="venue-request.html" class="active">Venue Request</a>
+                    <a href="schedule.html">Schedule</a>
+                    <a href="volunteers.html">Volunteers</a>
+                    <a href="equipment.html">Equipment</a>
+                    <a href="attendance.html">Attendance</a>
+                    <a href="notifications.html" class="notification-link">
+                        <span aria-hidden="true">&#128276;</span>
+                        <span id="notificationCount" class="notification-badge">0</span>
+                    </a>
+                </div>
+
+                <button class="btn btn-outline" onclick="logout()">
+                    Logout
+                </button>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container section venue-request-page">
+
+        <div class="page-header tilt-card">
+            <div class="header-copy">
+                <span class="eyebrow">Event planning</span>
+                <h1>Venue Request</h1>
+                <p>Request a venue for your upcoming event.</p>
+            </div>
+            <div class="status-pill">
+                <span class="dot"></span>
+                Ready for booking
+            </div>
+        </div>
+
+
+        <div class="form-box tilt-card">
+
+            <form id="venueForm">
+
+                <div class="grid">
+
+                    <div class="group full">
+                        <label>Event Name *</label>
+                        <input
+                            id="event"
+                            required
+                            placeholder="Enter event name"
+                        >
+                    </div>
+
+
+                    <div class="group">
+                        <label>Venue *</label>
+
+                        <select id="venue" required>
+                            <option value="">Select Venue</option>
+                            <option>Main Auditorium</option>
+                            <option>Seminar Hall</option>
+                            <option>Computer Lab 1</option>
+                            <option>Sports Ground</option>
+                            <option>Smart Classroom 201</option>
+                            <option>Conference Room</option>
+                        </select>
+                    </div>
+
+
+                    <div class="group">
+                        <label>Expected Participants *</label>
+
+                        <input
+                            id="participants"
+                            type="number"
+                            min="1"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="group">
+                        <label>Date *</label>
+
+                        <input
+                            id="date"
+                            type="date"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="group">
+                        <label>Start Time *</label>
+
+                        <input
+                            id="start"
+                            type="time"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="group">
+                        <label>End Time *</label>
+
+                        <input
+                            id="end"
+                            type="time"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="group full">
+                        <label>Purpose / Requirements</label>
+
+                        <textarea
+                            id="purpose"
+                            placeholder="Explain seating, projector, sound system, etc."
+                        ></textarea>
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                    >
+                        Submit Venue Request
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="request-list tilt-card">
+
+            <div class="list-header">
+                <div>
+                    <span class="eyebrow">Recent activity</span>
+                    <h2>My Venue Requests</h2>
+                </div>
+                <span class="mini-badge" id="requestCount">0 active</span>
+            </div>
+
+            <div id="requests"></div>
+
+        </div>
+
+    </main>
+
+
+<script src="../js/auth.js"></script>
+<script src="../js/organizer-menu.js"></script>
+<script src="../js/venue-request.js"></script>
+<script src="../js/organizer-notification.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("organizer");
+});
+</script>
+</body>
+
+</html>

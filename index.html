@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        CampusVenue | College Event Management
+    </title>
+
+    <meta
+        name="description"
+        content="CampusVenue - Smart College Venue and Event Management System"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/three-background.css"
+    >
+
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/api-config.js"></script>
+</head>
+
+
+<body class="campus-3d-page">
+
+
+<div
+    id="campus-3d-background"
+    aria-hidden="true"
+></div>
+
+
+<header class="navbar-wrapper">
+
+    <nav class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="CampusVenue Home"
+        >
+
+            <span class="logo-icon">
+                <i class="bi bi-buildings"></i>
+            </span>
+
+            <span>
+                Campus<span>Venue</span>
+            </span>
+
+        </a>
+
+
+        <div
+            class="nav-links"
+            id="navLinks"
+        >
+
+            <a
+                href="#home"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a href="#events">
+                Events
+            </a>
+
+            <a href="#venues">
+                Venues
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+
+            <div class="mobile-auth">
+
+                <a
+                    href="login.html"
+                    class="login-btn"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="register.html"
+                    class="register-btn"
+                >
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button
+                class="theme-btn"
+                id="themeBtn"
+                aria-label="Toggle theme"
+                type="button"
+            >
+
+                <i class="bi bi-moon-stars"></i>
+
+            </button>
+
+
+            <a
+                href="login.html"
+                class="login-btn desktop-login"
+            >
+                Login
+            </a>
+
+
+            <a
+                href="register.html"
+                class="register-btn desktop-register"
+            >
+
+                Register
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                type="button"
+            >
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<main>
+
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-background">
+
+        <div class="gradient-orb orb-one"></div>
+
+        <div class="gradient-orb orb-two"></div>
+
+        <div class="grid-pattern"></div>
+
+    </div>
+
+
+    <div class="hero-container">
+
+
+        <div class="hero-content">
+
+
+            <div class="hero-badge">
+
+                <span class="pulse-dot"></span>
+
+                Smart Campus Event Management
+
+            </div>
+
+
+            <h1>
+
+                Organize Every
+
+                <span>
+                    Campus Event
+                </span>
+
+                Smarter.
+
+            </h1>
+
+
+            <p>
+                A centralized platform to manage college events,
+                venues, registrations, volunteers, equipment,
+                attendance and more — all in one place.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="login.html"
+                    class="primary-btn auth-required"
+                    data-target="events"
+                >
+
+                    Explore Events
+
+                    <i class="bi bi-arrow-up-right"></i>
+
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="secondary-btn auth-required"
+                    data-target="venues"
+                >
+
+                    <i class="bi bi-buildings"></i>
+
+                    Explore Venues
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-trust">
+
+                <div class="avatar-stack">
+
+                    <div class="avatar">
+                        S
+                    </div>
+
+                    <div class="avatar">
+                        A
+                    </div>
+
+                    <div class="avatar">
+                        R
+                    </div>
+
+                    <div class="avatar">
+                        P
+                    </div>
+
+                    <div class="avatar-count">
+                        +1K
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Students & Faculty
+                    </strong>
+
+                    <small>
+                        using the platform
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-dashboard">
+
+            <div class="dashboard-window">
+
+
+                <div class="window-header">
+
+                    <div class="window-dots">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <span>
+                        Campus Dashboard
+                    </span>
+
+                    <i class="bi bi-three-dots"></i>
+
+                </div>
+
+
+                <div class="mini-dashboard">
+
+
+                    <div class="mini-sidebar">
+
+                        <div class="mini-logo">
+
+                            <i class="bi bi-buildings"></i>
+
+                        </div>
+
+
+                        <span class="mini-active">
+
+                            <i class="bi bi-grid"></i>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="bi bi-calendar-event"></i>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="bi bi-building"></i>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="bi bi-people"></i>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="bi bi-bar-chart"></i>
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="mini-content">
+
+
+                        <div class="mini-top">
+
+                            <div>
+
+                                <small>
+                                    Campus Overview
+                                </small>
+
+                                <h3>
+                                    Welcome back 👋
+                                </h3>
+
+                            </div>
+
+
+                            <div class="mini-user">
+                                ST
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="mini-stats">
+
+
+                            <div class="mini-stat">
+
+                                <i class="bi bi-calendar2-check"></i>
+
+                                <div>
+
+                                    <strong id="heroEventCount">
+                                        --
+                                    </strong>
+
+                                    <small>
+                                        Total Events
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mini-stat">
+
+                                <i class="bi bi-buildings"></i>
+
+                                <div>
+
+                                    <strong id="heroVenueCount">
+                                        --
+                                    </strong>
+
+                                    <small>
+                                        Venues
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mini-stat">
+
+                                <i class="bi bi-people"></i>
+
+                                <div>
+
+                                    <strong id="heroParticipantCount">
+                                        --
+                                    </strong>
+
+                                    <small>
+                                        Participants
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="mini-event">
+
+                            <div class="event-icon">
+
+                                <i class="bi bi-stars"></i>
+
+                            </div>
+
+
+                            <div class="event-info">
+
+                                <small>
+                                    UPCOMING EVENT
+                                </small>
+
+                                <strong id="heroFeaturedTitle">
+                                    Loading upcoming events...
+                                </strong>
+
+                                <span>
+
+                                    <i class="bi bi-calendar3"></i>
+
+                                    <span id="heroFeaturedDate">--</span>
+
+                                </span>
+
+                            </div>
+
+
+                            <span class="status upcoming" id="heroFeaturedStatus">
+                                --
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="stats-section">
+
+    <div class="container stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-calendar-event"></i>
+
+            </div>
+
+            <div>
+
+                    <strong id="homeEventsCount">
+                    --
+                </strong>
+
+                <span>
+                    Events Organized
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-buildings"></i>
+
+            </div>
+
+            <div>
+
+                    <strong id="homeVenuesCount">
+                    --
+                </strong>
+
+                <span>
+                    College Venues
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-people"></i>
+
+            </div>
+
+            <div>
+
+                    <strong id="homeStudentsCount">
+                    --
+                </strong>
+
+                <span>
+                    Students
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-check-circle"></i>
+
+            </div>
+
+            <div>
+
+                    <strong id="homeSuccessRate">
+                    --
+                </strong>
+
+                <span>
+                    Successful Events
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section
+    class="section"
+    id="events"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    UPCOMING EVENTS
+                </span>
+
+                <h2>
+
+                    What's happening
+
+                    <span>
+                        on campus?
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <a
+                href="login.html"
+                class="view-all auth-required"
+                data-target="events"
+            >
+
+                View All Events
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+
+        <div
+            class="event-grid"
+            id="homeEventsGrid"
+        >
+            <div class="homepage-empty">Loading events...</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section
+    class="section venue-section"
+    id="venues"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    CAMPUS VENUES
+                </span>
+
+                <h2>
+
+                    Find the perfect
+
+                    <span>
+                        place for your event.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <a
+                href="login.html"
+                class="view-all auth-required"
+                data-target="venues"
+            >
+
+                Explore Venues
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+
+        <div
+            class="venue-categories"
+            id="homeVenuesGrid"
+        >
+
+            <div class="venue-category auditorium-category" aria-labelledby="auditoriumHeading">
+                <div class="venue-category-heading">
+                    <h3 id="auditoriumHeading">AUDITORIUM</h3>
+                </div>
+                <div class="venue-grid venue-category-grid auditorium-grid" id="auditoriumVenueGrid">
+            <div class="homepage-empty">Loading venues...</div>
+        </div>
+            </div>
+
+            <div class="venue-category seminar-category" aria-labelledby="seminarHeading">
+                <div class="venue-category-heading">
+                    <h3 id="seminarHeading">SEMINAR HALL / CLASSROOM</h3>
+                </div>
+                <div class="venue-grid venue-category-grid" id="seminarVenueGrid">
+            <div class="homepage-empty">Loading venues...</div>
+        </div>
+            </div>
+
+            <div class="venue-category laboratory-category" aria-labelledby="laboratoryHeading">
+                <div class="venue-category-heading">
+                    <h3 id="laboratoryHeading">COMPUTER LABORATORIES</h3>
+                    <p>Dedicated computer labs for practicals, workshops and technical events.</p>
+                </div>
+                <div class="venue-grid venue-category-grid laboratory-grid" id="laboratoryVenueGrid">
+            <div class="homepage-empty">Loading venues...</div>
+        </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section
+    class="section features-section"
+    id="features"
+>
+
+    <div class="container">
+
+
+        <div class="center-heading">
+
+            <span class="section-label">
+                POWERFUL FEATURES
+            </span>
+
+
+            <h2>
+
+                Everything you need to
+
+                <span>
+                    manage campus events.
+                </span>
+
+            </h2>
+
+
+            <p>
+                From event creation to post-event analytics,
+                CampusVenue provides all the tools you need.
+            </p>
+
+        </div>
+
+
+
+        <div class="features-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="bi bi-calendar2-plus"></i>
+
+                </div>
+
+                <h3>
+                    Easy Event Creation
+                </h3>
+
+                <p>
+                    Create and manage campus events
+                    through a simple and organized workflow.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="bi bi-building"></i>
+
+                </div>
+
+                <h3>
+                    Venue Management
+                </h3>
+
+                <p>
+                    Explore college venues and check
+                    their availability for events.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="bi bi-people"></i>
+
+                </div>
+
+                <h3>
+                    Participant Management
+                </h3>
+
+                <p>
+                    Manage participants and keep event
+                    registration organized.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="bi bi-bar-chart"></i>
+
+                </div>
+
+                <h3>
+                    Analytics Dashboard
+                </h3>
+
+                <p>
+                    Track event activity, participation
+                    and important campus statistics.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="bi bi-bell"></i>
+
+                </div>
+
+                <h3>
+                    Smart Notifications
+                </h3>
+
+                <p>
+                    Receive important updates about
+                    events, approvals and activities.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="bi bi-shield-check"></i>
+
+                </div>
+
+                <h3>
+                    Secure Access
+                </h3>
+
+                <p>
+                    Role-based access keeps student,
+                    organizer and admin areas protected.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section
+    class="cta-section"
+    id="about"
+>
+
+    <div class="container">
+
+        <div class="cta-card">
+
+
+            <div class="cta-content">
+
+                <span class="section-label">
+                    GET STARTED
+                </span>
+
+
+                <h2>
+
+                    Ready to transform
+
+                    <span>
+                        your campus events?
+                    </span>
+
+                </h2>
+
+
+                <p>
+                    Create your CampusVenue account and
+                    bring event planning, venue management
+                    and campus activities together.
+                </p>
+
+
+                <a
+                    href="register.html"
+                    class="primary-btn"
+                >
+
+                    Create Your Account
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="cta-decoration">
+
+                <i class="bi bi-calendar-event"></i>
+
+                <i class="bi bi-buildings"></i>
+
+                <i class="bi bi-people"></i>
+
+                <i class="bi bi-bar-chart"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<footer class="footer">
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo"
+                    aria-label="CampusVenue Home"
+                >
+
+                    <span class="logo-icon">
+
+                        <i class="bi bi-buildings"></i>
+
+                    </span>
+
+
+                    <span>
+
+                        Campus<span>Venue</span>
+
+                    </span>
+
+                </a>
+
+
+                <p>
+                    Smart College Venue and Event Management
+                    System for modern campuses.
+                </p>
+
+
+                <div class="social-links">
+
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                    >
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="Twitter"
+                    >
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                    >
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="LinkedIn"
+                    >
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Quick Links
+                </h4>
+
+
+                <a href="#home">
+                    Home
+                </a>
+
+
+                <a href="#events">
+                    Events
+                </a>
+
+
+                <a href="#venues">
+                    Venues
+                </a>
+
+
+                <a href="#features">
+                    Features
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Resources
+                </h4>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="notifications"
+                >
+                    Notifications
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="venues"
+                >
+                    Venue Guidelines
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="support"
+                >
+                    Support
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="support"
+                >
+                    Contact
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Legal
+                </h4>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="privacy"
+                >
+                    Privacy Policy
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="terms"
+                >
+                    Terms of Service
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="auth-required"
+                    data-target="cookies"
+                >
+                    Cookie Policy
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <span>
+                &copy; 2026 CampusVenue. All rights reserved.
+            </span>
+
+
+            <span>
+
+                Made with
+
+                <i class="bi bi-heart-fill"></i>
+
+                for colleges
+
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<div
+    class="auth-notification-overlay"
+    id="authNotification"
+    aria-hidden="true"
+>
+
+    <div
+        class="auth-notification"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="authNotificationTitle"
+    >
+
+
+        <button
+            class="auth-notification-close"
+            id="closeAuthNotification"
+            type="button"
+            aria-label="Close notification"
+        >
+
+            <i class="bi bi-x-lg"></i>
+
+        </button>
+
+
+        <div class="auth-notification-icon">
+
+            <i class="bi bi-person-plus"></i>
+
+        </div>
+
+
+        <span class="auth-notification-label">
+            CAMPUSVENUE
+        </span>
+
+
+        <h2 id="authNotificationTitle">
+            Create your account first
+        </h2>
+
+
+        <p>
+            New to CampusVenue? Create an account to
+            explore events, discover venues and access
+            your personalized campus experience.
+        </p>
+
+
+        <div class="auth-notification-actions">
+
+
+            <a
+                href="register.html"
+                class="auth-primary-btn"
+            >
+
+                Create Account
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+
+            <a
+                href="login.html"
+                class="auth-secondary-btn"
+            >
+
+                Already have an account?
+
+                <strong>
+                    Login
+                </strong>
+
+            </a>
+
+        </div>
+
+
+        <div class="auth-divider">
+
+            <span>
+                or continue with
+            </span>
+
+        </div>
+
+
+        <div class="social-auth-buttons">
+
+
+            <button
+                type="button"
+                class="social-auth-btn google-auth-btn"
+                id="googleAuthBtn"
+            >
+
+                <i class="bi bi-google"></i>
+
+                <span>
+                    Google
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="social-auth-btn facebook-auth-btn"
+                id="facebookAuthBtn"
+            >
+
+                <i class="bi bi-facebook"></i>
+
+                <span>
+                    Facebook
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <small class="auth-notification-note">
+            Social sign-in will be available after account
+            authentication is connected.
+        </small>
+
+    </div>
+
+</div>
+
+
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+>
+
+    <i class="bi bi-check-circle"></i>
+
+
+    <div>
+
+        <strong id="toastTitle">
+            Success
+        </strong>
+
+
+        <span id="toastMessage">
+            Action completed successfully.
+        </span>
+
+    </div>
+
+
+    <button
+        id="closeToast"
+        type="button"
+        aria-label="Close notification"
+    >
+
+        <i class="bi bi-x"></i>
+
+    </button>
+
+</div>
+
+
+
+<script src="js/main.js"></script>
+
+
+</body>
+
+</html>

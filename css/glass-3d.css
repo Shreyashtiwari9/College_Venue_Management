@@ -1,0 +1,80 @@
+/* CampusVenue Global Glass UI */
+
+.glass-card,
+.card,
+.dashboard-card,
+.stat-card,
+.panel,
+.content-card,
+.table-card,
+.form-card,
+.info-card,
+.event-card,
+.venue-card,
+.feature-card,
+.approval-card,
+.equipment-card,
+.feedback-card,
+.report-card,
+.notification-card,
+.profile-card,
+.request-card,
+.user-card {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow:
+        0 18px 45px rgba(25, 30, 60, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+body.dark .glass-card,
+body.dark .card,
+body.dark .dashboard-card,
+body.dark .stat-card,
+body.dark .panel,
+body.dark .content-card,
+body.dark .table-card,
+body.dark .form-card,
+body.dark .info-card,
+body.dark .event-card,
+body.dark .venue-card,
+body.dark .feature-card,
+body.dark .approval-card,
+body.dark .equipment-card,
+body.dark .feedback-card,
+body.dark .report-card,
+body.dark .notification-card,
+body.dark .profile-card,
+body.dark .request-card,
+body.dark .user-card {
+    background: rgba(15, 20, 40, 0.28) !important;
+    border-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+.glass-card:hover,
+.dashboard-card:hover,
+.stat-card:hover,
+.content-card:hover,
+.info-card:hover,
+.approval-card:hover,
+.equipment-card:hover,
+.feedback-card:hover,
+.report-card:hover,
+.notification-card:hover,
+.profile-card:hover,
+.request-card:hover,
+.user-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(99, 91, 255, 0.30) !important;
+    box-shadow:
+        0 25px 60px rgba(25, 30, 60, 0.18),
+        0 0 30px rgba(99, 91, 255, 0.08);
+}

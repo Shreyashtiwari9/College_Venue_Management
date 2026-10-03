@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Venue Details | Campus Venue Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .venue-page {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 35px 25px 60px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-3px);
+            text-decoration: underline;
+        }
+
+        .venue-hero {
+            background: linear-gradient(135deg, #1e1b4b, #4338ca);
+            border-radius: 24px;
+            padding: 35px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(67, 56, 202, 0.15);
+        }
+
+        .venue-hero::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            right: -80px;
+            top: -100px;
+            pointer-events: none;
+        }
+
+        .venue-hero::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            right: 100px;
+            bottom: -120px;
+            pointer-events: none;
+        }
+
+        .venue-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .venue-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 14px;
+            background: rgba(255,255,255,0.16);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            backdrop-filter: blur(4px);
+        }
+
+        .venue-hero h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0 0 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .venue-hero p {
+            margin: 0;
+            color: rgba(255,255,255,0.88);
+            max-width: 720px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .availability-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 22px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .availability-status.occupied {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .venue-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(15,23,42,0.03);
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-title h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title span {
+            color: #6b7280;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            padding: 18px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+        }
+
+        .info-label {
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            color: #0f172a;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .description {
+            color: #4b5563;
+            line-height: 1.8;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .facility-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .facility {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .facility-icon {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .schedule-item {
+            display: grid;
+            grid-template-columns: 85px 1fr auto;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background: #fafafa;
+        }
+
+        .schedule-date {
+            text-align: center;
+            background: #eef2ff;
+            color: #4338ca;
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .schedule-date strong {
+            display: block;
+            font-size: 18px;
+            line-height: 1.1;
+        }
+
+        .schedule-date small {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .schedule-info h4 {
+            margin: 0 0 4px;
+            color: #111827;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .schedule-info p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .schedule-tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .booking-card {
+            position: sticky;
+            top: 30px;
+        }
+
+        .booking-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .booking-icon {
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 14px;
+            border-radius: 18px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 28px;
+        }
+
+        .booking-header h2 {
+            margin: 0 0 6px;
+            color: #111827;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .booking-header p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .availability-box {
+            padding: 16px;
+            border-radius: 14px;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            margin-bottom: 18px;
+        }
+
+        .availability-box.occupied {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .availability-box strong {
+            color: #166534;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .availability-box.occupied strong {
+            color: #991b1b;
+        }
+
+        .availability-box span {
+            color: #4b5563;
+            font-size: 12px;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .btn {
+            width: 100%;
+            border: none;
+            padding: 13px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            margin-top: 10px;
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .related-event {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .related-event:last-child {
+            border-bottom: none;
+        }
+
+        .event-date {
+            min-width: 48px;
+            text-align: center;
+            padding: 7px;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #4338ca;
+        }
+
+        .event-date strong {
+            display: block;
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        .event-date small {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .related-event h4 {
+            margin: 0 0 3px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .related-event p {
+            margin: 0;
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 480px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.25s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 8px;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #111827;
+            background: #f3f4f6;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            height: 44px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 0 14px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #111827;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 12px;
+            display: none;
+            z-index: 10001;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            animation: toastIn 0.3s ease;
+        }
+
+        @keyframes toastIn {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 900px) {
+            .venue-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-card {
+                position: static;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .venue-page {
+                padding: 20px 15px 45px;
+            }
+
+            .venue-hero {
+                padding: 25px 20px;
+                border-radius: 18px;
+            }
+
+            .venue-hero h1 {
+                font-size: 26px;
+            }
+
+            .info-grid,
+            .facility-list {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-item {
+                grid-template-columns: 65px 1fr;
+            }
+
+            .schedule-tag {
+                grid-column: 2;
+                width: fit-content;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body>
+
+    
+    <main class="venue-page">
+
+        <a href="venues.html" class="back-btn">
+            <i class="bi bi-arrow-left"></i> Back to Venues
+        </a>
+
+        
+        <section class="venue-hero">
+
+            <div class="venue-hero-content">
+
+                <div class="venue-badge" id="venueType">
+                    <i class="bi bi-building"></i> Venue
+                </div>
+
+                <h1 id="venueName">Loading venue...</h1>
+
+                <p id="venueDescription">
+                    Loading venue details...
+                </p>
+
+                <div class="availability-status" id="heroStatus">
+                    Loading availability...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        
+        <div class="venue-layout">
+
+            
+            <div>
+
+                
+                <section class="card">
+
+                    <div class="card-title">
+                        <h2><i class="bi bi-info-circle"></i> Venue Information</h2>
+                        <span>Campus Facility</span>
+                    </div>
+
+                    <div class="info-grid">
+
+                        <div class="info-box">
+                            <div class="info-label">Location</div>
+                            <div class="info-value" id="venueLocation">
+                                --
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-label">Capacity</div>
+                            <div class="info-value" id="venueCapacity">
+                                --
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-label">Venue Type</div>
+                            <div class="info-value" id="venueTypeInfo">
+                                --
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-label">Current Status</div>
+                            <div class="info-value" id="venueStatusInfo">
+                                --
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                
+                <section class="card">
+
+                    <div class="card-title">
+                        <h2><i class="bi bi-card-text"></i> About This Venue</h2>
+                    </div>
+
+                    <p class="description" id="aboutVenue">
+                        Loading venue details...
+                    </p>
+
+                </section>
+
+
+                
+                <section class="card">
+
+                    <div class="card-title">
+                        <h2><i class="bi bi-tools"></i> Facilities & Equipment</h2>
+                        <span>Available Resources</span>
+                    </div>
+
+                    <div class="facility-list" id="facilityList">
+                        <div>Loading facilities...</div>
+                    </div>
+
+                </section>
+
+
+                
+                <section class="card">
+
+                    <div class="card-title">
+                        <h2><i class="bi bi-calendar-week"></i> Upcoming Schedule</h2>
+                        <span>Venue bookings</span>
+                    </div>
+
+                    <div class="schedule-list" id="scheduleList">
+                        <div class="schedule-empty">Loading venue bookings...</div>
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            
+            <aside>
+
+                
+                <section class="card booking-card">
+
+                    <div class="booking-header">
+
+                        <div class="booking-icon" id="sidebarIcon">
+                            <i class="bi bi-building"></i>
+                        </div>
+
+                        <h2>Venue Availability</h2>
+
+                        <p>
+                            Check venue availability before planning an event.
+                        </p>
+
+                    </div>
+
+
+                    <div class="availability-box" id="availabilityBox">
+
+                        <strong id="availabilityTitle">
+                            Loading availability...
+                        </strong>
+
+                        <span id="availabilityText">
+                            Availability is being loaded from the database.
+                        </span>
+
+                    </div>
+
+
+                    <button class="btn btn-primary" onclick="openAvailabilityModal()">
+                        <i class="bi bi-search"></i> Check Slot Availability
+                    </button>
+
+                    <button class="btn btn-secondary" onclick="viewEvents()">
+                        <i class="bi bi-calendar3"></i> View Venue Events
+                    </button>
+
+                </section>
+
+
+                
+                <section class="card">
+
+                    <div class="card-title">
+                        <h2><i class="bi bi-calendar-event"></i> Related Events</h2>
+                    </div>
+
+                    <div class="related-events-list" id="relatedEventsList">
+
+                        <div>Loading related events...</div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    
+    <div class="modal-overlay" id="availabilityModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3><i class="bi bi-clock-history"></i> Check Slot Availability</h3>
+                <button class="close-modal" onclick="closeAvailabilityModal()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <form id="availabilityForm" onsubmit="handleSlotCheck(event)">
+
+                <div class="form-group">
+                    <label>Selected Venue</label>
+                    <input type="text" id="modalVenueName" readonly style="background: #f8fafc; font-weight: 600;">
+                </div>
+
+                <div class="form-group">
+                    <label>Target Date</label>
+                    <input type="date" id="checkDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Time Slot</label>
+                    <select id="checkTimeSlot" required>
+                        <option value="morning">Morning (09:00 AM - 12:00 PM)</option>
+                        <option value="afternoon">Afternoon (01:00 PM - 04:00 PM)</option>
+                        <option value="evening">Evening (05:00 PM - 08:00 PM)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">
+                    <i class="bi bi-search"></i> Verify Slot Availability
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    
+    <div class="toast" id="toast"></div>
+
+
+    
+    <script>
+
+        
+
+        const VENUE_DETAILS_API_BASE_URL = "/api";
+        const venueId = new URLSearchParams(window.location.search).get("id");
+        let venueData = null;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateInput = document.getElementById("checkDate");
+            if (dateInput) {
+                dateInput.value = tomorrow.toISOString().slice(0, 10);
+                dateInput.min = new Date().toISOString().slice(0, 10);
+            }
+            if (!venueId) {
+                showVenueLoadError("Venue not found.");
+                return;
+            }
+            loadVenueFromApi(venueId);
+        });
+
+        async function loadVenueFromApi(id) {
+            try {
+                const response = await fetch(VENUE_DETAILS_API_BASE_URL + "/venues/" + encodeURIComponent(id));
+                const data = await response.json();
+                if (!response.ok || !data.success || !data.venue) {
+                    throw new Error(data.message || "Unable to load venue details.");
+                }
+                venueData = data.venue;
+                const type = getVenueType(venueData);
+                const description = venueData.description || "No description available.";
+                document.getElementById("venueName").textContent = venueData.name || "Unnamed venue";
+                document.getElementById("venueType").innerHTML = '<i class="bi bi-building"></i> ' + escapeVenueDetailsText(type);
+                document.getElementById("venueTypeInfo").textContent = type;
+                document.getElementById("venueLocation").textContent = venueData.location || "Location not available";
+                document.getElementById("venueCapacity").textContent = String(venueData.capacity || 0) + " People";
+                document.getElementById("venueStatusInfo").textContent = venueData.availability || venueData.status || "Unavailable";
+                document.getElementById("venueDescription").textContent = description;
+                document.getElementById("aboutVenue").textContent = description;
+                document.getElementById("modalVenueName").value = venueData.name || "";
+                renderFacilities(venueData.facilities);
+                renderVenueEvents(document.getElementById("scheduleList"), data.upcomingEvents || [], true);
+                renderVenueEvents(document.getElementById("relatedEventsList"), data.upcomingEvents || [], false);
+                updateAvailabilityUI(venueData.availability || venueData.status);
+            } catch (error) {
+                console.error("Venue Details Load Error:", error);
+                showVenueLoadError(error.message || "Unable to load venue details.");
+            }
+        }
+
+        function getVenueType(venue) {
+            if (venue.type) return venue.type;
+            const name = String(venue.name || "").toLowerCase();
+            if (name.includes("lab")) return "Laboratory";
+            if (name.includes("seminar")) return "Seminar Hall";
+            if (name.includes("classroom") || name.includes("dronacharya")) return "Classroom";
+            if (name.includes("auditorium") || name.includes("chanakya")) return "Auditorium";
+            return "College Venue";
+        }
+
+        function renderFacilities(facilities) {
+            const list = document.getElementById("facilityList");
+            const items = Array.isArray(facilities) ? facilities : [];
+            list.replaceChildren();
+            if (!items.length) {
+                list.textContent = "No facilities listed.";
+                return;
+            }
+            items.forEach(function (facility) {
+                const item = document.createElement("div");
+                item.className = "facility";
+                const icon = document.createElement("div");
+                icon.className = "facility-icon";
+                icon.innerHTML = '<i class="bi bi-check2-circle"></i>';
+                item.append(icon, document.createTextNode(String(facility)));
+                list.appendChild(item);
+            });
+        }
+
+        function renderVenueEvents(container, events, isSchedule) {
+            if (!events.length) {
+                container.textContent = "No upcoming bookings.";
+                return;
+            }
+            container.innerHTML = events.map(function (event) {
+                const date = new Date(event.eventDate);
+                const day = Number.isNaN(date.getTime()) ? "--" : String(date.getDate()).padStart(2, "0");
+                const month = Number.isNaN(date.getTime()) ? "---" : date.toLocaleDateString("en-IN", { month: "short" }).toUpperCase();
+                const title = escapeVenueDetailsText(event.title || "Untitled event");
+                const time = escapeVenueDetailsText((event.startTime || "--") + " - " + (event.endTime || "--"));
+                const organizer = event.organizer && event.organizer.name ? " ? " + escapeVenueDetailsText(event.organizer.name) : "";
+                const wrapperClass = isSchedule ? "schedule-item" : "related-event";
+                const dateClass = isSchedule ? "schedule-date" : "event-date";
+                const infoClass = isSchedule ? "schedule-info" : "related-event-info";
+                return '<div class="' + wrapperClass + '"><div class="' + dateClass + '"><strong>' + day + '</strong><small>' + month + '</small></div><div class="' + infoClass + '"><h4>' + title + '</h4><p>' + time + organizer + '</p></div>' + (isSchedule ? '<span class="schedule-tag">Approved</span>' : '') + '</div>';
+            }).join("");
+        }
+
+        function updateAvailabilityUI(status) {
+            const normalized = String(status || "unavailable").toLowerCase();
+            const isAvailable = normalized === "available";
+            document.getElementById("heroStatus").textContent = isAvailable ? "Available" : normalized === "maintenance" ? "Unavailable" : "Booked";
+            document.getElementById("heroStatus").classList.toggle("occupied", !isAvailable);
+            document.getElementById("availabilityBox").classList.toggle("occupied", !isAvailable);
+            document.getElementById("availabilityTitle").textContent = isAvailable ? "Currently available" : normalized === "maintenance" ? "Currently unavailable" : "Currently booked";
+            document.getElementById("availabilityText").textContent = isAvailable ? "Select a date and time slot to check availability." : "This venue is not currently available. Check a specific slot for future availability.";
+        }
+
+        function showVenueLoadError(message) {
+            document.getElementById("venueName").textContent = "Venue unavailable";
+            document.getElementById("venueDescription").textContent = message;
+            document.getElementById("aboutVenue").textContent = message;
+            document.getElementById("scheduleList").textContent = "Unable to load venue bookings.";
+            document.getElementById("relatedEventsList").textContent = "Unable to load related events.";
+            showToast(message);
+        }
+
+        function escapeVenueDetailsText(value) {
+            return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        function openAvailabilityModal() {
+            document.getElementById("availabilityModal").classList.add("active");
+        }
+
+        function closeAvailabilityModal() {
+            document.getElementById("availabilityModal").classList.remove("active");
+        }
+
+        async function handleSlotCheck(event) {
+            event.preventDefault();
+            if (!venueData) return showToast("Venue data is unavailable.");
+            const date = document.getElementById("checkDate").value;
+            const slots = { morning: ["09:00", "12:00"], afternoon: ["13:00", "16:00"], evening: ["17:00", "20:00"] };
+            const slot = slots[document.getElementById("checkTimeSlot").value];
+            closeAvailabilityModal();
+            try {
+                const query = new URLSearchParams({ date: date, startTime: slot[0], endTime: slot[1] });
+                const response = await fetch(VENUE_DETAILS_API_BASE_URL + "/venues/" + encodeURIComponent(venueData._id) + "/availability?" + query);
+                const data = await response.json();
+                if (!response.ok || !data.success) throw new Error(data.message || "Unable to check availability.");
+                if (data.available) showToast("" + venueData.name + " is available for the selected time.");
+                else showToast("" + venueData.name + " is " + data.status + " for the selected time.");
+            } catch (error) {
+                console.error("Venue Availability Error:", error);
+                showToast(error.message || "Unable to check availability.");
+            }
+        }
+
+        function viewEvents() {
+            if (!venueData) return;
+            localStorage.setItem("venueFilter", venueData.name);
+            window.location.href = "event.html";
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.style.display = "block";
+            window.setTimeout(function () { toast.style.display = "none"; }, 3200);
+        }</script>
+
+
+<script src="../js/auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("student");
+});
+</script>
+</body>
+</html>

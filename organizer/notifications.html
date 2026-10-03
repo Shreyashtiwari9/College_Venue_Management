@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications | CampusVenue</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/notification.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+<body>
+
+<main class="notification-page">
+
+    <a href="dashboard.html" class="back-link">
+        ← Back to Dashboard
+    </a>
+
+    <section class="page-header">
+
+        <div class="header-content">
+            <h1>Notifications</h1>
+
+            <p>
+                Stay updated with your events, approvals and activities.
+            </p>
+        </div>
+
+        <div class="notification-icon">
+            🔔
+            <span
+                class="notification-count"
+                id="notificationCount">
+                0
+            </span>
+        </div>
+
+    </section>
+
+    <section class="toolbar">
+
+        <div class="filter-buttons">
+
+            <button
+                class="filter-btn active"
+                data-filter="all"
+                onclick="filterOrganizerNotifications('all', this)">
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="unread"
+                onclick="filterOrganizerNotifications('unread', this)">
+                Unread
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="approval"
+                onclick="filterOrganizerNotifications('approval', this)">
+                Approval
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="event"
+                onclick="filterOrganizerNotifications('event', this)">
+                Events
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="venue"
+                onclick="filterOrganizerNotifications('venue', this)">
+                Venue
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="system"
+                onclick="filterOrganizerNotifications('system', this)">
+                System
+            </button>
+
+        </div>
+
+        <div class="toolbar-actions">
+
+            <button
+                class="mark-all-btn"
+                onclick="markAllOrganizerNotificationsRead()">
+                ✓ Mark all as read
+            </button>
+
+            <button
+                class="delete-all-btn"
+                onclick="deleteAllOrganizerNotifications()">
+                🗑 Delete all
+            </button>
+
+        </div>
+
+    </section>
+
+    <section
+        class="notification-loading"
+        id="notificationLoading"
+        style="display: none;">
+
+        <div class="loading-icon">
+            🔄
+        </div>
+
+        <p>
+            Loading notifications...
+        </p>
+
+    </section>
+
+    <section
+        class="notification-error"
+        id="notificationError"
+        style="display: none;">
+
+        <div class="error-icon">
+            ⚠️
+        </div>
+
+        <h3>
+            Unable to Load Notifications
+        </h3>
+
+        <p id="notificationErrorMessage">
+            Something went wrong.
+        </p>
+
+        <button
+            class="action-btn"
+            onclick="loadOrganizerNotifications()">
+            Try Again
+        </button>
+
+    </section>
+
+    <section
+        class="notification-list"
+        id="notificationList">
+    </section>
+
+    <section
+        class="empty-state"
+        id="emptyState"
+        style="display: none;">
+
+        <div class="empty-icon">
+            🔔
+        </div>
+
+        <h3>
+            No Notifications
+        </h3>
+
+        <p>
+            There are no notifications matching this filter.
+        </p>
+
+    </section>
+
+</main>
+
+<div
+    class="toast"
+    id="toast">
+    Notification updated.
+</div>
+
+<script src="../js/organizer-notification.js"></script>
+<script src="../js/auth.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("organizer");
+});
+</script>
+
+</body>
+</html>

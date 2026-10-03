@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Users | CampusVenue</title>
+
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/users.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../css/responsive.css">
+    <script src="../js/api-config.js"></script>
+</head>
+
+
+<body class="role-page">
+
+
+
+
+<header class="topbar">
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            
+            <a href="../index.html" class="logo">
+                Campus<span>Venue</span>
+            </a>
+
+
+            
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="users.html" class="active">
+                    Users
+                </a>
+
+                <a href="venues.html">
+                    Venues
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="approvals.html">
+                    Approvals
+                </a>
+
+                <a href="reports.html">
+                    Reports
+                </a>
+
+            </div>
+
+
+            
+            <div class="nav-actions">
+
+                <button
+                    onclick="logout()"
+                    class="btn btn-outline"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+
+
+<main class="container section">
+
+
+    
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="eyebrow">
+                ADMIN PANEL
+            </span>
+
+            <h1>
+                User Management
+            </h1>
+
+            <p>View and manage students, organizers and administrators.</p>
+
+        </div>
+
+    </div>
+
+        <div class="organizer-create-toolbar">
+            <button
+                type="button"
+                id="toggleOrganizerCreate"
+                class="btn btn-outline"
+                aria-expanded="false"
+                aria-controls="organizerCreateForm"
+            >
+                <i class="bi bi-person-plus" aria-hidden="true"></i>
+                Create Organizer
+            </button>
+        </div>
+
+        <form id="organizerCreateForm" class="organizer-create-panel" hidden>
+            <div class="organizer-create-heading">
+                <div>
+                    <h2>Create organizer account</h2>
+                    <p>Organizer accounts are provisioned by Admin. The account becomes active after it is created.</p>
+                </div>
+                <button type="button" id="closeOrganizerCreate" class="action edit" aria-label="Close organizer form">
+                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="organizer-form-grid">
+                <div class="organizer-form-field">
+                    <label for="organizerName">Full name</label>
+                    <input id="organizerName" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerEmail">College email address</label>
+                    <input id="organizerEmail" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerPhone">Contact number</label>
+                    <input id="organizerPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerCollegeId">College ID / Employee ID</label>
+                    <input id="organizerCollegeId" name="collegeId" type="text" required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerDepartment">Department</label>
+                    <input id="organizerDepartment" name="department" type="text" required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerDesignation">Designation / Position</label>
+                    <input id="organizerDesignation" name="designation" type="text" required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerType">Organizer type</label>
+                    <select id="organizerType" name="organizerType" required>
+                        <option value="">Select organizer type</option>
+                        <option value="faculty-coordinator">Faculty Coordinator</option>
+                        <option value="staff-coordinator">Staff Coordinator</option>
+                        <option value="club-coordinator">Club Coordinator</option>
+                        <option value="student-club-representative">Student Club Representative</option>
+                    </select>
+                </div>
+                <div id="organizerClubFields" class="organizer-form-field" hidden>
+                    <label for="organizerClubName">Club / Society name</label>
+                    <input id="organizerClubName" name="clubName" type="text" disabled>
+                </div>
+                <div id="organizerFacultyFields" class="organizer-form-field" hidden>
+                    <label for="organizerFacultyCoordinator">Faculty coordinator name</label>
+                    <input id="organizerFacultyCoordinator" name="facultyCoordinatorName" type="text" disabled>
+                </div>
+                <div class="organizer-form-field organizer-form-span">
+                    <label for="organizerResponsibilities">Short description of responsibilities</label>
+                    <textarea id="organizerResponsibilities" name="responsibilityDescription" rows="3" maxlength="500" required></textarea>
+                </div>
+                <div class="organizer-form-field organizer-form-span">
+                    <label for="organizerReason">Reason for organizer access</label>
+                    <textarea id="organizerReason" name="accessRequestReason" rows="3" maxlength="500" required></textarea>
+                </div>
+                <label class="organizer-consent-field organizer-form-span" for="organizerTermsAccepted">
+                    <input id="organizerTermsAccepted" name="termsAccepted" type="checkbox" required>
+                    <span>I confirm the organizer has accepted the applicable Terms and Privacy Policy.</span>
+                </label>
+                <div class="organizer-form-field">
+                    <label for="organizerPassword">Initial password</label>
+                    <input id="organizerPassword" name="password" type="password" autocomplete="new-password" minlength="8" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" title="Use at least 8 characters with uppercase, lowercase, and a number." required>
+                </div>
+                <div class="organizer-form-field">
+                    <label for="organizerConfirmPassword">Confirm password</label>
+                    <input id="organizerConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required>
+                </div>
+            </div>
+
+            <div id="organizerCreateMessage" class="organizer-create-message" role="status" aria-live="polite"></div>
+
+            <div class="organizer-create-actions">
+                <button type="submit" id="organizerCreateSubmit" class="btn btn-primary">
+                    <i class="bi bi-person-plus" aria-hidden="true"></i>
+                    Create account
+                </button>
+            </div>
+        </form>
+
+
+
+    
+
+    <div class="admin-box">
+
+
+        
+
+        <div class="toolbar">
+
+
+            
+
+            <div class="filter-group">
+
+                <label for="search">
+                    Search Users
+                </label>
+
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search name, email or ID..."
+                >
+
+            </div>
+
+
+
+            
+
+            <div class="filter-group">
+
+                <label for="role">
+                    Role
+                </label>
+
+                <select id="role">
+
+                    <option value="">
+                        All Roles
+                    </option>
+
+                    <option value="Student">
+                        Student
+                    </option>
+
+                    <option value="Organizer">
+                        Organizer
+                    </option>
+
+                    <option value="Admin">
+                        Admin
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            
+
+            <div class="filter-group">
+
+                <label for="status">
+                    Status
+                </label>
+
+                <select id="status">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Blocked">
+                        Blocked
+                    </option>
+
+                    <option value="Pending approval">
+                        Pending approval
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+
+        
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            College ID
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Role
+                        </th>
+
+                        <th>
+                            Organizer Profile
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="userTable">
+                    <tr><td colspan="7">Loading users...</td></tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        
+
+        <div
+            id="noUsers"
+            class="no-users"
+        >
+            No users found.
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+
+
+<script src="../js/users.js"></script>
+
+
+
+<script src="../js/auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    protectPage("admin");
+});
+</script>
+</body>
+
+</html>

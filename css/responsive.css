@@ -1,0 +1,995 @@
+/* =========================================================
+   CAMPUSVENUE RESPONSIVE SYSTEM
+   Desktop → Laptop → Tablet → Mobile
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   GLOBAL RESPONSIVE CONTAINER
+========================================================= */
+
+.role-page .section,
+.role-page .navbar {
+    width: min(1240px, calc(100% - 40px));
+    max-width: 100%;
+}
+
+.content,
+.main,
+.page-content,
+.dashboard-content {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .role-page .section,
+    .role-page .navbar {
+        width: calc(100% - 36px);
+    }
+
+    .content {
+        padding: 32px;
+    }
+
+    .stats,
+    .admin-grid {
+        gap: 16px;
+    }
+
+    .card,
+    .admin-card,
+    .box {
+        min-width: 0;
+    }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .role-page .navbar {
+        gap: 16px;
+    }
+
+    .role-page .nav-links {
+        gap: 16px;
+    }
+
+    .role-page .nav-links a {
+        font-size: 13px;
+    }
+
+    .content,
+    .page-content,
+    .dashboard-content {
+        padding: 28px;
+    }
+
+    .stats,
+    .admin-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card,
+    .admin-card,
+    .box {
+        min-width: 0;
+    }
+
+    .table-container,
+    .table-wrapper,
+    .data-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 700px;
+    }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .role-page .topbar {
+        position: sticky;
+        top: 0;
+    }
+
+    .role-page .navbar {
+        min-height: auto;
+        padding: 16px 0;
+        flex-wrap: wrap;
+    }
+
+    .role-page .navbar .logo {
+        font-size: 25px;
+    }
+
+    .role-page .nav-links {
+        width: 100%;
+        order: 3;
+        display: flex;
+        justify-content: flex-start;
+        gap: 16px;
+        padding-top: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: thin;
+    }
+
+    .role-page .nav-links a {
+        flex: 0 0 auto;
+    }
+
+    .content,
+    .page-content,
+    .dashboard-content {
+        padding: 24px;
+    }
+
+    .stats,
+    .admin-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sidebar {
+        width: 230px;
+    }
+
+    .main,
+    .content {
+        min-width: 0;
+    }
+
+    .page-header h1 {
+        font-size: clamp(28px, 5vw, 40px);
+    }
+
+    .toolbar,
+    .page-toolbar,
+    .filter-bar {
+        flex-wrap: wrap;
+    }
+
+    .toolbar > *,
+    .page-toolbar > *,
+    .filter-bar > * {
+        max-width: 100%;
+    }
+
+    .form-grid,
+    .form-row,
+    .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .role-page .nav-links {
+        flex-wrap: wrap;
+        overflow: visible;
+        white-space: normal;
+    }
+
+    .role-page .nav-links a {
+        flex: 0 1 auto;
+    }
+}
+
+/* =========================================================
+   SIDEBAR TABLET BEHAVIOUR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /*
+       Desktop sidebar ko page ke upar overlap hone se rokta hai.
+    */
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(280px, 82vw);
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        z-index: 1000;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transform: translateX(-105%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active,
+    .sidebar.open,
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main,
+    .content,
+    .page-content,
+    .dashboard-content {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    /*
+       Agar kisi existing layout me sidebar ke liye
+       fixed margin diya gaya hai to remove karega.
+    */
+
+    .main-content,
+    .main,
+    .content {
+        max-width: 100%;
+    }
+
+    .dashboard-layout,
+    .admin-layout,
+    .organizer-layout,
+    .student-layout {
+        display: block;
+        width: 100%;
+    }
+
+    /*
+       Mobile menu overlay
+    */
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        display: none;
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+    }
+
+    .sidebar-overlay.active,
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    .mobile-menu-btn,
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        min-width: 42px;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border: 1px solid rgba(99, 102, 241, 0.20);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.70);
+        color: #4f46e5;
+        cursor: pointer;
+    }
+}
+
+/* =========================================================
+   MOBILE NAVBAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .role-page .navbar,
+    .role-page .section {
+        width: calc(100% - 28px);
+    }
+
+    .role-page .navbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .role-page .navbar .logo {
+        font-size: 23px;
+    }
+
+    .role-page .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .role-page .nav-actions .btn,
+    .role-page .navbar > .btn {
+        min-height: 40px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .role-page .nav-links {
+        order: 3;
+        flex: 0 0 100%;
+        width: 100%;
+        padding: 8px 0 3px;
+        gap: 8px 18px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+    }
+
+    .role-page .nav-links a {
+        flex: 0 0 auto;
+        font-size: 13px;
+    }
+
+    .role-page .section {
+        padding-top: 35px;
+        padding-bottom: 50px;
+    }
+
+    .content,
+    .page-content,
+    .dashboard-content {
+        padding: 20px 14px;
+    }
+
+    .stats,
+    .admin-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .form-grid,
+    .form-row,
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header {
+        margin-bottom: 20px;
+    }
+
+    .page-header h1 {
+        font-size: 30px;
+        line-height: 1.15;
+    }
+
+    .page-header p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+/* =========================================================
+   CARDS MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .card,
+    .admin-card,
+    .box,
+    .stat-card,
+    .event-card,
+    .venue-card,
+    .feature-card,
+    .approval-card,
+    .equipment-card,
+    .feedback-card,
+    .report-card,
+    .notification-card,
+    .profile-card,
+    .request-card,
+    .user-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .card,
+    .admin-card,
+    .box {
+        border-radius: 15px;
+    }
+
+    .card h2,
+    .admin-card h2 {
+        font-size: 20px;
+    }
+
+    .card h3,
+    .admin-card h3 {
+        font-size: 17px;
+    }
+
+    .card p,
+    .admin-card p {
+        font-size: 14px;
+    }
+
+    /*
+       Hover ko mobile par light rakhta hai.
+    */
+
+    .card:hover,
+    .admin-card:hover,
+    .box:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* =========================================================
+   TABLE RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .table-container,
+    .table-wrapper,
+    .data-table-wrapper,
+    .responsive-table,
+    .table-scroll,
+    .table-wrap,
+    .students-table-wrapper,
+    .request-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .table-container table,
+    .table-wrapper table,
+    .data-table-wrapper table,
+    .responsive-table table,
+    .table-scroll table,
+    .table-wrap table,
+    .students-table-wrapper table,
+    .request-table-wrapper table {
+        width: 100%;
+        min-width: 680px;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+}
+
+/* =========================================================
+   TOOLBAR / SEARCH / FILTERS
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .toolbar,
+    .page-toolbar,
+    .filter-bar,
+    .search-filter,
+    .actions-row {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .toolbar > *,
+    .page-toolbar > *,
+    .filter-bar > *,
+    .search-filter > *,
+    .actions-row > * {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .search-box,
+    .search-wrapper {
+        width: 100%;
+    }
+
+    .search-box input,
+    .search-wrapper input,
+    .toolbar input,
+    .toolbar select,
+    .filter-bar input,
+    .filter-bar select {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   BUTTON RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .button-group,
+    .action-buttons,
+    .form-actions,
+    .card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .button-group .btn,
+    .action-buttons .btn,
+    .form-actions .btn {
+        min-height: 42px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .button-group,
+    .action-buttons,
+    .form-actions,
+    .card-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .button-group .btn,
+    .action-buttons .btn,
+    .form-actions .btn,
+    .card-actions .btn {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+@media (max-width: 700px) {
+
+    form {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+    }
+
+    textarea {
+        min-height: 110px;
+    }
+}
+
+/* =========================================================
+   DASHBOARD STAT NUMBERS
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .stat-number,
+    .stat-value,
+    .count,
+    .number {
+        font-size: clamp(24px, 8vw, 34px);
+    }
+
+    .stat-label,
+    .stat-title {
+        font-size: 12px;
+    }
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .modal {
+        padding: 14px;
+    }
+
+    .modal-content,
+    .modal-box,
+    .modal-dialog {
+        width: 100%;
+        max-width: 100%;
+        max-height: calc(100vh - 28px);
+        overflow-y: auto;
+        border-radius: 16px;
+    }
+}
+
+/* =========================================================
+   NOTIFICATION / TOAST
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .toast,
+    .notification,
+    .alert,
+    .message {
+        max-width: calc(100% - 24px);
+        width: auto;
+    }
+}
+
+/* =========================================================
+   IMAGES / MEDIA
+========================================================= */
+
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+/* =========================================================
+   3D BACKGROUND MOBILE PERFORMANCE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    #campus-3d-background {
+        opacity: 0.85;
+    }
+}
+
+@media (max-width: 600px) {
+
+    #campus-3d-background {
+        opacity: 0.72;
+    }
+
+    #campus-3d-background canvas {
+        max-width: none;
+    }
+}
+
+/* =========================================================
+   DARK MODE MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body.dark.role-page .mobile-menu-btn {
+        background: rgba(15, 23, 42, 0.75);
+        border-color: rgba(129, 140, 248, 0.20);
+        color: #a5b4fc;
+    }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .role-page .navbar,
+    .role-page .section {
+        width: calc(100% - 20px);
+    }
+
+    .role-page .navbar .logo {
+        font-size: 21px;
+    }
+
+    .role-page .nav-actions .btn,
+    .role-page .navbar > .btn {
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+
+    .content,
+    .page-content,
+    .dashboard-content {
+        padding: 14px 10px;
+    }
+
+    .page-header h1 {
+        font-size: 26px;
+    }
+
+    .card,
+    .admin-card,
+    .box {
+        padding: 15px;
+        border-radius: 13px;
+    }
+
+    table {
+        min-width: 620px;
+    }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (max-height: 520px) and (orientation: landscape) {
+
+    .sidebar {
+        overflow-y: auto;
+    }
+
+    .role-page .topbar {
+        position: relative;
+    }
+
+    .role-page .section {
+        padding-top: 28px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .card:hover,
+    .admin-card:hover,
+    .box:hover,
+    .sidebar-link:hover {
+        transform: none !important;
+    }
+}
+
+/* Shared safeguards for page-specific layouts */
+
+:where(h1, h2, h3, h4, p, a, button, label, th, td, .logo, .breadcrumb) {
+    overflow-wrap: anywhere;
+}
+
+:where(.container, .section, .main, .content, .page-content, .dashboard-content, .dashboard-main, .card, .admin-card, .box, .event-card, .venue-card, .profile-card) {
+    min-width: 0;
+    max-width: 100%;
+}
+
+:where(.card, .admin-card, .box, .event-card, .venue-card, .feature-card, .stat-card, .approval-card, .equipment-card, .feedback-card, .report-card, .notification-card, .profile-card, .request-card, .user-card) {
+    height: auto;
+}
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+@media (max-width: 1200px) {
+
+    .role-page .stats,
+    .role-page .admin-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+
+    .role-page .stats,
+    .role-page .admin-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-header,
+    .section-heading,
+    .dashboard-heading,
+    .card-header {
+        min-width: 0;
+        flex-wrap: wrap;
+    }
+
+    .form-grid,
+    .form-row,
+    .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+
+    table {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .form-grid,
+    .form-row,
+    .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .modal-content,
+    .modal-box,
+    .modal-dialog,
+    .auth-notification {
+        width: min(100%, 640px);
+        max-width: calc(100vw - 28px);
+        max-height: calc(100vh - 28px);
+        max-height: calc(100dvh - 28px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .role-page .stats,
+    .role-page .admin-grid,
+    .stats-grid,
+    .dashboard-grid,
+    .event-grid,
+    .venue-grid,
+    .feature-grid,
+    .card-grid,
+    .report-grid,
+    .equipment-grid,
+    .feedback-grid,
+    .users-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .form-grid,
+    .form-row,
+    .two-column {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .page-header,
+    .section-heading,
+    .dashboard-heading,
+    .card-header {
+        gap: 12px;
+    }
+
+    :where(button, input[type="button"], input[type="submit"], .btn, .primary-btn, .secondary-btn, .details-btn) {
+        max-width: 100%;
+        min-height: 42px;
+        white-space: normal;
+    }
+
+    .button-group,
+    .action-buttons,
+    .form-actions,
+    .card-actions,
+    .heading-actions {
+        max-width: 100%;
+    }
+
+    .venues-page,
+    .content,
+    .page-content,
+    .dashboard-content {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .venue-section .venue-categories {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 24px;
+    }
+
+    .venue-section .venue-category {
+        display: block;
+        min-width: 0;
+    }
+
+    #auditoriumVenueGrid,
+    #seminarVenueGrid,
+    #laboratoryVenueGrid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+        gap: 16px;
+    }
+
+    #auditoriumVenueGrid .venue-card,
+    #seminarVenueGrid .venue-card,
+    #laboratoryVenueGrid .venue-card {
+        width: 100%;
+        max-width: none;
+        grid-column: auto;
+        grid-row: auto;
+        justify-self: stretch;
+    }
+
+    .venue-section .section-heading {
+        align-items: flex-start;
+    }
+
+    .venue-section .view-all {
+        align-self: flex-start;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .role-page .navbar,
+    .role-page .section {
+        width: calc(100% - 20px);
+    }
+
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    .page-header h1,
+    .role-page .page-header h1 {
+        font-size: clamp(23px, 8vw, 28px);
+        line-height: 1.15;
+    }
+
+    .venues-page,
+    .content,
+    .page-content,
+    .dashboard-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .modal-content,
+    .modal-box,
+    .modal-dialog,
+    .auth-notification {
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 20px);
+        max-height: calc(100dvh - 20px);
+    }
+}
